@@ -3,6 +3,7 @@ class Api::V1::UsersController < ApplicationController
 
   def create
     user = User.new(user_registration_params)
+    user.member_since = Date.today
     if user.save
       render json: { token: issue_token({ id: user.id }) }
     else
@@ -41,7 +42,7 @@ class Api::V1::UsersController < ApplicationController
   private
 
     def user_registration_params
-      params.permit(:username, :password, :password_confirmation)
+      params.permit(:username, :password, :password_confirmation, :first_name, :last_name, :email)
     end
     
 end
