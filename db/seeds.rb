@@ -26,3 +26,5 @@ def create_users(number)
 end
 
 create_users(10)
+
+Event.create(organiser_id: 1, title: 'Event1')
