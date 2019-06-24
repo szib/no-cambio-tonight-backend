@@ -28,3 +28,9 @@ end
 create_users(10)
 
 Event.create(organiser_id: 1, title: 'Event1')
+Event.create(organiser_id: 2, title: 'Event2')
+
+Attendance.create(attendee_id: 2, event_id: 1)
+Attendance.create(attendee_id: 5, event_id: 1)
+Attendance.create(attendee_id: 5, event_id: 2)
+Attendance.create(attendee_id: 6, event_id: 2)
