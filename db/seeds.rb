@@ -49,4 +49,10 @@ unless Rails.env.production?
   Attendance.create(attendee_id: 5, event_id: 1)
   Attendance.create(attendee_id: 5, event_id: 2)
   Attendance.create(attendee_id: 6, event_id: 2)
+
+  Gamepiece.create(owner_id: 1, game_id: 1)
+  Gamepiece.create(owner_id: 1, game_id: 2)
+  Gamepiece.create(owner_id: 2, game_id: 2)
+  Gamepiece.create(owner_id: 2, game_id: 3)
+
 end
