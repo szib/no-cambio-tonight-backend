@@ -10,7 +10,46 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2019_06_24_142812) do
+ActiveRecord::Schema.define(version: 2019_06_25_080537) do
+
+  create_table "attendances", force: :cascade do |t|
+    t.integer "attendee_id"
+    t.integer "event_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["attendee_id"], name: "index_attendances_on_attendee_id"
+    t.index ["event_id"], name: "index_attendances_on_event_id"
+  end
+
+  create_table "eventgames", force: :cascade do |t|
+    t.integer "attendance_id"
+    t.integer "gamepiece_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["attendance_id"], name: "index_eventgames_on_attendance_id"
+    t.index ["gamepiece_id"], name: "index_eventgames_on_gamepiece_id"
+  end
+
+  create_table "events", force: :cascade do |t|
+    t.integer "organiser_id"
+    t.string "title"
+    t.string "location"
+    t.datetime "date_time"
+    t.boolean "is_cancelled"
+    t.integer "capacity"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["organiser_id"], name: "index_events_on_organiser_id"
+  end
+
+  create_table "gamepieces", force: :cascade do |t|
+    t.integer "owner_id"
+    t.integer "game_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["game_id"], name: "index_gamepieces_on_game_id"
+    t.index ["owner_id"], name: "index_gamepieces_on_owner_id"
+  end
 
   create_table "games", force: :cascade do |t|
     t.string "bga_id"
@@ -43,6 +82,7 @@ ActiveRecord::Schema.define(version: 2019_06_24_142812) do
     t.string "last_name"
     t.string "email"
     t.date "member_since"
+    t.integer "gender", default: 0
   end
 
 end
