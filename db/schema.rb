@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2019_06_25_080537) do
+ActiveRecord::Schema.define(version: 2019_06_25_152946) do
 
   create_table "attendances", force: :cascade do |t|
     t.integer "attendee_id"
@@ -35,8 +35,8 @@ ActiveRecord::Schema.define(version: 2019_06_25_080537) do
     t.string "title"
     t.string "location"
     t.datetime "date_time"
-    t.boolean "is_cancelled"
-    t.integer "capacity"
+    t.boolean "is_cancelled", default: false
+    t.integer "capacity", default: 50
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.index ["organiser_id"], name: "index_events_on_organiser_id"
