@@ -2,7 +2,6 @@ class UserSerializer < ActiveModel::Serializer
   attributes :id, :username, :first_name, :last_name, :member_since
   attribute :email, if: :is_current_user?
   
-  
   attribute :picture do
     picture_id = object.id % 98
     case object.gender
@@ -20,6 +19,17 @@ class UserSerializer < ActiveModel::Serializer
     pictures["medium"] = "https://randomuser.me/api/portraits/med/#{gender}/#{picture_id}.jpg" 
     pictures["thumb"] = "https://randomuser.me/api/portraits/thumb/#{gender}/#{picture_id}.jpg" 
     pictures
+  end
+
+  attribute :gender do
+    case object.gender
+    when 1
+      'male'
+    when 2
+      'female'
+    else
+      '--'
+    end
   end
 
   def is_current_user?
