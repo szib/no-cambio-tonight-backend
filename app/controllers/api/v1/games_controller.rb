@@ -1,23 +1,21 @@
 # frozen_string_literal: true
 
 class Api::V1::GamesController < ApplicationController
-  before_action :setup
+  include BoardGameAtlas::API
 
   # search games at BGA API
   def search
-    url = @base_url + "&name=#{params[:name]}"
-    data = JSON.parse(RestClient.get(url))
-    games_data = convert_games(data)
+    games_data = BoardGameAtlas::API.search(params[:name])
     render json: games_data
   end
-  
+
   # save a game by bga_id
-  # it might need to be refactored as a helper method for POST /users/:id/games
   def save
-    url = @base_url + "&ids=#{params[:bga_id]}"
-    data = JSON.parse(RestClient.get(url))
-    game_data = convert_game(data['games'][0])
-    game = Game.create_with(game_data).find_or_create_by(bga_id: game_data['bga_id'])
+    game = Game.find_by(bga_id: params[:bga_id])
+    unless game
+      game_data = BoardGameAtlas::API.find_by_id(params[:bga_id])
+      game = Game.create_with(game_data).find_or_create_by(bga_id: game_data['bga_id'])
+    end
     if game
       render json: game
     else
@@ -26,11 +24,6 @@ class Api::V1::GamesController < ApplicationController
   end
 
   private
-
-  def setup
-    client_id = ENV['BGA_CLIENT_ID']
-    @base_url = "https://www.boardgameatlas.com/api/search?client_id=#{client_id}"
-  end
 
   def search_params
     params.permit(:name)

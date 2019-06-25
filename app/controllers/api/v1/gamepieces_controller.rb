@@ -1,6 +1,8 @@
 # frozen_string_literal: true
 
 class Api::V1::GamepiecesController < ApplicationController
+  include BoardGameAtlas::API
+
   before_action :require_login
   before_action :find_user
 
@@ -16,11 +18,7 @@ class Api::V1::GamepiecesController < ApplicationController
     game = Game.find_by(bga_id: params[:bga_id])
     unless game
       # fetch and save game
-      client_id = ENV['BGA_CLIENT_ID']
-      @base_url = "https://www.boardgameatlas.com/api/search?client_id=#{client_id}"
-      url = @base_url + "&ids=#{params[:bga_id]}"
-      data = JSON.parse(RestClient.get(url))
-      game_data = convert_game(data['games'][0])
+      game_data = BoardGameAtlas::API.find_by_id(params[:bga_id])
       game = Game.create_with(game_data).find_or_create_by(bga_id: game_data['bga_id'])
       Gamepiece.create(owner: @user, game: game)
     end
