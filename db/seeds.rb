@@ -40,19 +40,28 @@ unless Rails.env.production?
     User.create(users)
   end
 
-  create_users(10)
+  create_users(5)
 
-  Event.create(organiser_id: 1, title: 'Event1')
-  Event.create(organiser_id: 2, title: 'Event2')
+  # user 3 has game 1,2,3   attend: event 1,2   bring: game 1,2 to event 1, game 3 to event 2
+  # user 4 has game 1,4     attend: event 1     bring: game 1 to event 1
 
-  Attendance.create(attendee_id: 2, event_id: 1)
-  Attendance.create(attendee_id: 5, event_id: 1)
-  Attendance.create(attendee_id: 5, event_id: 2)
-  Attendance.create(attendee_id: 6, event_id: 2)
+  e1 = Event.create(organiser: User.first, title: 'Event1') # attend: user 3,4
+  e2 = Event.create(organiser: User.first, title: 'Event2') # attend: user 3
+  e3 = Event.create(organiser: User.second, title: 'Event3')
 
-  Gamepiece.create(owner_id: 1, game_id: 1)
-  Gamepiece.create(owner_id: 1, game_id: 2)
-  Gamepiece.create(owner_id: 2, game_id: 2)
-  Gamepiece.create(owner_id: 2, game_id: 3)
+  a1 = Attendance.create(attendee: User.find(3), event: e1) 
+  a2 = Attendance.create(attendee: User.find(4), event: e1)
+  a3 = Attendance.create(attendee: User.find(3), event: e2)
+
+  gp1 = Gamepiece.create(owner: User.find(3), game: Game.find(1))
+  gp2 = Gamepiece.create(owner: User.find(3), game: Game.find(2))
+  gp3 = Gamepiece.create(owner: User.find(3), game: Game.find(3))
+  gp4 = Gamepiece.create(owner: User.find(4), game: Game.find(1))
+  gp5 = Gamepiece.create(owner: User.find(4), game: Game.find(4))
+
+  eg1 = Eventgame.create(attendance: a1, gamepiece: gp1)
+  eg2 = Eventgame.create(attendance: a1, gamepiece: gp2)
+  eg3 = Eventgame.create(attendance: a1, gamepiece: gp3)
+  eg4 = Eventgame.create(attendance: a2, gamepiece: gp4)
 
 end
