@@ -27,34 +27,6 @@ class Api::V1::GamesController < ApplicationController
 
   private
 
-  def convert_games(data)
-    converted_data = data['games'].map { |game| convert_game(game)}
-  end
-
-  def convert_game(bga_game)
-    game = {}
-    game['bga_id'] = bga_game['id']
-    game['publisher'] = bga_game['primary_publisher']
-
-    identical_keys = %w[
-      name
-      description
-      year_published
-      min_players
-      max_players
-      min_playtime
-      max_playtime
-      min_age
-      average_user_rating
-      rules_url
-    ]
-    identical_keys.each { |key| game[key] = bga_game[key] }
-
-    bga_game['images'].keys.each { |key| game["image_#{key}"] = bga_game['images'][key] }
-
-    game
-  end
-
   def setup
     client_id = ENV['BGA_CLIENT_ID']
     @base_url = "https://www.boardgameatlas.com/api/search?client_id=#{client_id}"
