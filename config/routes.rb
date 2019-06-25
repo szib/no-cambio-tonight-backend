@@ -10,9 +10,8 @@ Rails.application.routes.draw do
       get '/games/search', to: 'games#search'
       post '/games/save', to: 'games#save' # probably not needed at all
 
-      resources :events, only: [:show, :index, :create] do
-        get '/cancel', to: 'events#cancel'
-      end
+      resources :events, only: [:show, :index, :create]
+      get '/events/:id/cancel', to: 'events#cancel'
 
     end
   end
