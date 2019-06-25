@@ -33,14 +33,15 @@ unless Rails.env.production?
         first_name: Faker::Name.first_name,
         last_name: Faker::Name.last_name,
         email: Faker::Internet.email,
-        member_since: Faker::Date.backward(90)
+        member_since: Faker::Date.backward(90),
+        gender: idx % 3,
       }
       users << user
     end
     User.create(users)
   end
 
-  create_users(5)
+  create_users(20)
 
   # user 3 has game 1,2,3   attend: event 1,2   bring: game 1,2 to event 1, game 3 to event 2
   # user 4 has game 1,4     attend: event 1     bring: game 1 to event 1
