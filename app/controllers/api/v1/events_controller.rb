@@ -4,7 +4,15 @@ class Api::V1::EventsController < ApplicationController
   before_action :find_event, only: [:show, :cancel]
   before_action :find_user, only: [:cancel]
 
-  def create; end
+  def create
+    event = Event.new(event_params)
+    event.organiser = current_user
+    if event.save
+      render json: event
+    else
+      render json: { error: 'Cannot create event' }, status: 400
+    end
+  end
 
   def index
     @events = Event.all
@@ -37,6 +45,10 @@ class Api::V1::EventsController < ApplicationController
   end
 
   private
+
+  def event_params
+    params.require(:event).permit(:title, :location, :date_time)
+  end
 
   def find_event
     @event = Event.find_by(id: params[:id])
