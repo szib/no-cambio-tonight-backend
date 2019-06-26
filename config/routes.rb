@@ -19,13 +19,19 @@ Rails.application.routes.draw do
       post '/games/save', to: 'games#save' # probably not needed at all
 
       resources :events, only: %i[show index create] do
+        # cancel
+        get '/cancel', to: 'events#cancel'
+
+        # attendance
         get '/attendees', to: 'attendees#index'
         post '/rsvp', to: 'attendees#create'
         delete '/rsvp', to: 'attendees#destroy'
-
-        resources :eventgame, only: %i[index create destroy], path: 'games'
+        
+        # games
+        get '/games', to: 'eventgames#index'
+        post '/addgame', to: 'eventgames#create'
+        delete '/removegame', to: 'eventgames#destroy'
       end
-      get '/events/:id/cancel', to: 'events#cancel'
     end
   end
 end
