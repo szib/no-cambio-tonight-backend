@@ -10,5 +10,7 @@ class User < ApplicationRecord
   has_many :games, through: :gamepieces
 
   validates :username, uniqueness: { case_sensitive: false }
-  validates :password_confirmation, presence: true
+
+  validates :password, presence: true, on: [:create]
+  validates :password_confirmation, presence: true, on: [:create]
 end

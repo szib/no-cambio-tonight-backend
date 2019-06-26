@@ -52,8 +52,14 @@ class Api::V1::UsersController < ApplicationController
     render json: current_user
   end
 
-  # TODO
-  def patch_profile; end
+  def patch_profile
+    user = current_user
+    if user.update_attributes(patch_profile_params)
+      render json: user
+    else
+      render json: { error: 'User not found.' }, status: 404
+    end
+  end
 
   def events
     render json: current_user.organised_events
@@ -63,5 +69,9 @@ class Api::V1::UsersController < ApplicationController
 
   def user_registration_params
     params.permit(:username, :password, :password_confirmation, :first_name, :last_name, :email)
+  end
+
+  def patch_profile_params
+    params.permit(:email)
   end
 end
