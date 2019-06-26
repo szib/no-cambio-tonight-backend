@@ -9,6 +9,6 @@ class Event < ApplicationRecord
   end
 
   def number_of_attendees
-    attendees.count
+    attendees.size
   end
 end
