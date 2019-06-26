@@ -18,7 +18,7 @@ Rails.application.routes.draw do
       get '/games/search', to: 'games#search'
       post '/games/save', to: 'games#save' # probably not needed at all
 
-      resources :events, only: %i[show index create] do
+      resources :events, only: %i[show index create update] do
         # attendance
         get '/attendees', to: 'attendees#index'
         post '/rsvp', to: 'attendees#create'
