@@ -1,8 +1,8 @@
 # frozen_string_literal: true
 
 class Api::V1::EventsController < ApplicationController
-  before_action :find_event, only: [:show, :cancel]
-  before_action :find_user, only: [:cancel]
+  before_action :find_event, only: %i[show cancel update]
+  before_action :find_user, only: %i[cancel update]
 
   def create
     event = Event.new(event_params)
@@ -30,7 +30,15 @@ class Api::V1::EventsController < ApplicationController
       render json: { error: 'Cannot find event' }, status: 404
     end
   end
-  
+
+  def update
+    if @event.organiser === @user && @event.update_attributes(event_params)
+      render json: @event
+    else
+      render json: { error: 'Cannot update event.' }, status: 404
+    end
+  end
+
   def cancel
     if @event && @event.organiser === @user
       @event['is_cancelled'] = true
