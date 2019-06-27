@@ -5,7 +5,7 @@ Rails.application.routes.draw do
   namespace :api do
     namespace :v1 do
       post '/signin', to: 'users#signin' # username, password => token
-      post '/validate', to: 'users#validate' # token => user || error
+      get '/validate', to: 'users#validate' # token => user || error
 
       resources :users, only: %i[create show]
 
