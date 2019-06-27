@@ -46,9 +46,9 @@ unless Rails.env.production?
   # user 3 has game 1,2,3   attend: event 1,2   bring: game 1,2 to event 1, game 3 to event 2
   # user 4 has game 1,4     attend: event 1     bring: game 1 to event 1
 
-  e1 = Event.create(organiser: User.first, title: 'Event1') # attend: user 3,4
-  e2 = Event.create(organiser: User.first, title: 'Event2') # attend: user 3
-  e3 = Event.create(organiser: User.second, title: 'Event3')
+  e1 = Event.create(organiser: User.first, title: 'Event1', location: 'Location1', date_time: Faker::Time.forward(14)) # attend: user 3,4
+  e2 = Event.create(organiser: User.first, title: 'Event2', location: 'Location1', date_time: Faker::Time.forward(14)) # attend: user 3
+  e3 = Event.create(organiser: User.second, title: 'Event3', location: 'Location1', date_time: Faker::Time.forward(14))
 
   a1 = Attendance.create(attendee: User.find(3), event: e1) 
   a2 = Attendance.create(attendee: User.find(4), event: e1)
