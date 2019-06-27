@@ -1,7 +1,7 @@
 # frozen_string_literal: true
 
 class Api::V1::UsersController < ApplicationController
-  skip_before_action :require_login, only: %i[login create]
+  skip_before_action :require_login, only: %i[signin create]
 
   def create
     user = User.new(user_registration_params)
@@ -30,7 +30,7 @@ class Api::V1::UsersController < ApplicationController
     end
   end
 
-  def login
+  def signin
     user = User.find_by(username: params[:username])
     if user&.authenticate(params[:password])
       render json: { token: issue_token(id: user.id) }
