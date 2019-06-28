@@ -8,7 +8,7 @@ class Api::V1::GamepiecesController < ApplicationController
 
   def index
     if @user
-      render json: @user.games
+      render json: @user.gamepieces
     else
       render json: { error: 'Invalid user id' }, status: 404
     end

@@ -6,7 +6,7 @@ class Api::V1::GamesController < ApplicationController
   # search games at BGA API
   def search
     games_data = BoardGameAtlas::API.search(params[:name])
-    render json: games_data
+    render json: games_data.map { |game| { game: game } }
   end
 
   # save a game by bga_id
