@@ -6,7 +6,7 @@ class Api::V1::GamesController < ApplicationController
   # search games at BGA API
   def search
     games_data = BoardGameAtlas::API.search(params[:name])
-    render json: games_data.map { |game| { game: game } }
+    render json: { games: games_data.map }
   end
 
   # save a game by bga_id
@@ -17,7 +17,7 @@ class Api::V1::GamesController < ApplicationController
       game = Game.create_with(game_data).find_or_create_by(bga_id: game_data['bga_id'])
     end
     if game
-      render json: game
+      render json: game, root: "game", adapter: :json
     else
       render json: { error: 'Cannot save game.' }, status: 400
     end

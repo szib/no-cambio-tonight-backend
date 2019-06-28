@@ -5,7 +5,7 @@ class Api::V1::AttendeesController < ApplicationController
 
   def index
     if @event
-      render json: @event.attendees
+      render json: @event.attendees, root: "attendees", adapter: :json
     else
       render json: { error: 'Cannot find event' }, status: 404
     end

@@ -5,7 +5,7 @@ class Api::V1::EventgamesController < ApplicationController
 
   def index
     if @event
-      render json: @event.gamelist
+      render json: @event.gamelist, root: "games", adapter: :json
     else
       render json: { error: 'Cannot find event' }, status: 404
     end
@@ -16,7 +16,7 @@ class Api::V1::EventgamesController < ApplicationController
     gamepiece = current_user.gamepieces.find_by(id: params[:gamepiece_id])
     if attendance && gamepiece
       eventgame = Eventgame.find_or_create_by(gamepiece: gamepiece, attendance: attendance)
-      render json: eventgame
+      render json: eventgame, root: "game_piece", adapter: :json
     else
         render json: { error: 'Cannot add game to the event' }, status: 400
     end

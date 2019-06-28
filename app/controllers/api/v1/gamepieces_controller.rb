@@ -8,7 +8,7 @@ class Api::V1::GamepiecesController < ApplicationController
 
   def index
     if @user
-      render json: @user.gamepieces
+      render json: @user.gamepieces, root: "game_pieces", adapter: :json
     else
       render json: { error: 'Invalid user id' }, status: 404
     end
@@ -25,7 +25,7 @@ class Api::V1::GamepiecesController < ApplicationController
 
     gp = Gamepiece.find_by(owner: @user, game: game)
     gp ||= Gamepiece.create(owner: @user, game: game)
-    render json: gp
+    render json: gp, root: "game_piece", adapter: :json
   end
 
   def destroy
