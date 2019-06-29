@@ -39,20 +39,39 @@ unless Rails.env.production?
       users << user
     end
     User.create(users)
+    User.all
   end
 
-  create_users(20)
+  def create_events(number)
+    events = []
+    number.times do |idx|
+      event_idx = idx + 1
+      event = {
+        organiser: User.all.sample,
+        title: "Event #{event_idx}",
+        location: "Location #{event_idx}",
+        date_time: Faker::Time.forward(14)
+      }
+      events << event
+    end
+    Event.create(events)
+    Event.all
+  end
 
+  users = create_users(20)
+  
   # user 3 has game 1,2,3   attend: event 1,2   bring: game 1,2 to event 1, game 3 to event 2
   # user 4 has game 1,4     attend: event 1     bring: game 1 to event 1
+  
+  e1 = Event.create(organiser: users[0], title: 'Fix Event1', location: 'Fix Location1', date_time: Faker::Time.forward(14)) # attend: user 3,4
+  e2 = Event.create(organiser: users[0], title: 'Fix Event2', location: 'Fix Location2', date_time: Faker::Time.forward(14)) # attend: user 3
+  e3 = Event.create(organiser: users[1], title: 'Fix Event3', location: 'Fix Location3', date_time: Faker::Time.forward(14))
+  
+  events = create_events(20)
 
-  e1 = Event.create(organiser: User.first, title: 'Event1', location: 'Location1', date_time: Faker::Time.forward(14)) # attend: user 3,4
-  e2 = Event.create(organiser: User.first, title: 'Event2', location: 'Location1', date_time: Faker::Time.forward(14)) # attend: user 3
-  e3 = Event.create(organiser: User.second, title: 'Event3', location: 'Location1', date_time: Faker::Time.forward(14))
-
-  a1 = Attendance.create(attendee: User.find(3), event: e1) 
-  a2 = Attendance.create(attendee: User.find(4), event: e1)
-  a3 = Attendance.create(attendee: User.find(3), event: e2)
+  a1 = Attendance.create(attendee: User.find(3), event: events[0]) 
+  a2 = Attendance.create(attendee: User.find(4), event: events[1])
+  a3 = Attendance.create(attendee: User.find(3), event: events[2])
 
   gp1 = Gamepiece.create(owner: User.find(3), game: Game.find(1))
   gp2 = Gamepiece.create(owner: User.find(3), game: Game.find(2))
