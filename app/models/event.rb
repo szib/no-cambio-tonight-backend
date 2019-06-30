@@ -11,4 +11,8 @@ class Event < ApplicationRecord
   def number_of_attendees
     attendees.size
   end
+
+  def attending?(user = current_user)
+    attendees.find_by(id: user.id)
+  end
 end
