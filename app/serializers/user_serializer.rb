@@ -36,6 +36,14 @@ class UserSerializer < ActiveModel::Serializer
     "#{object.first_name} #{object.last_name}"
   end
 
+  attribute :number_of_organised_events do
+    object.organised_events.size
+  end
+
+  attribute :number_of_attended_events do
+    object.attended_events.size
+  end
+
   def is_current_user?
     object.id === current_user.id
   end
