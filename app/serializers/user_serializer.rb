@@ -32,6 +32,10 @@ class UserSerializer < ActiveModel::Serializer
     end
   end
 
+  attribute :full_name do
+    "#{object.first_name} #{object.last_name}"
+  end
+
   def is_current_user?
     object.id === current_user.id
   end
