@@ -18,7 +18,8 @@ class Api::V1::EventsController < ApplicationController
   def index
     @events = Event.all
     if @events
-      render json: @events, root: "events", adapter: :json, current_user: current_user
+      render json: @events, root: "events", adapter: :json,
+      each_serializer: EventsSerializer, current_user: current_user
     else
       render json: { error: 'Cannot find event' }, status: 404
     end
