@@ -7,6 +7,7 @@ class Api::V1::EventsController < ApplicationController
   def create
     event = Event.new(event_params)
     event.organiser = current_user
+    event.attendees << current_user
     if event.save
       render json: event, root: "event", adapter: :json
     else
