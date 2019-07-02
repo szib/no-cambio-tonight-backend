@@ -61,8 +61,16 @@ class Api::V1::UsersController < ApplicationController
     end
   end
 
-  def events
-    render json: current_user.organised_events, root: "events", adapter: :json
+  def organised_events
+    @events = current_user.organised_events
+    render json: @events, root: "events", adapter: :json,
+    each_serializer: EventsSerializer, current_user: current_user
+  end
+
+  def attended_events
+    @events = current_user.attended_events
+    render json: @events, root: "events", adapter: :json,
+    each_serializer: EventsSerializer, current_user: current_user
   end
 
   private
