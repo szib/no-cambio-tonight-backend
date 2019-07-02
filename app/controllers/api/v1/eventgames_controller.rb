@@ -5,7 +5,7 @@ class Api::V1::EventgamesController < ApplicationController
 
   def index
     if @event
-      render json: @event.gamelist, root: "games", adapter: :json
+      render json: @event.game_pieces, root: "game_pieces", adapter: :json
     else
       render json: { error: 'Cannot find event' }, status: 404
     end

@@ -4,6 +4,10 @@ class Event < ApplicationRecord
   has_many :attendances, dependent: :destroy
   has_many :attendees, through: :attendances
 
+  def game_pieces
+    attendances.map(&:gamepieces).flatten
+  end
+
   def gamelist
     attendances.map(&:gamepieces).flatten.map(&:game).uniq
   end
