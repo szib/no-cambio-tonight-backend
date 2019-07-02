@@ -1,6 +1,6 @@
 class EventsSerializer < ActiveModel::Serializer
 
-  attributes :id, :title, :location, :date_time, :is_cancelled
+  attributes :id, :title, :location, :start_date_time, :end_date_time, :is_cancelled
   attributes :capacity, :number_of_attendees
   attributes :is_current_user_attending
   attributes :is_current_user_organising
