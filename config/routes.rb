@@ -15,7 +15,7 @@ Rails.application.routes.draw do
       get '/organisedEvents', to: 'users#organised_events' 
       get '/attendedEvents', to: 'users#attended_events' 
 
-      resources :gamepieces, only: %i[create destroy index], path: 'mygames'
+      resources :gamepieces, only: %i[show create destroy index], path: 'mygames'
       get '/games/search', to: 'games#search'
       post '/games/save', to: 'games#save' # probably not needed at all
 
