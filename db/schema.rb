@@ -83,7 +83,6 @@ ActiveRecord::Schema.define(version: 2019_07_02_063728) do
     t.string "last_name"
     t.string "email"
     t.date "member_since"
-    t.integer "gender", default: 0
   end
 
 end
