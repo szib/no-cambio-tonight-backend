@@ -7,7 +7,7 @@ class Api::V1::UsersController < ApplicationController
     user = User.new(user_registration_params)
     user.member_since = Date.today
     if user.save
-      render json: { user: user, token: issue_token(id: user.id) }
+      render json: { token: issue_token(id: user.id) }
     else
       render json: { error: 'Cannot create user.' }, status: 400
     end

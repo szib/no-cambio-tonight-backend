@@ -26,15 +26,22 @@ unless Rails.env.production?
     number.times do |idx|
       user_idx = idx + 1
       password = "#{user_idx}" * 6
+      if idx.even?
+        first_name = Faker::Name.female_first_name
+      else
+        first_name = Faker::Name.male_first_name
+      end
+      last_name = Faker::Name.last_name
+      email = Faker::Internet.email("#{first_name} #{last_name}", '.')
+
       user =   {
         username: "user#{user_idx}",
         password: password,
         password_confirmation: password,
-        first_name: Faker::Name.first_name,
-        last_name: Faker::Name.last_name,
-        email: Faker::Internet.email,
+        first_name: first_name,
+        last_name: last_name,
+        email: email,
         member_since: Faker::Date.backward(90),
-        gender: idx % 3,
       }
       users << user
     end
@@ -98,10 +105,10 @@ unless Rails.env.production?
   gp4 = Gamepiece.create(owner: User.find(4), game: Game.find(1))
   gp5 = Gamepiece.create(owner: User.find(4), game: Game.find(4))
 
-  eg1 = Eventgame.create(attendance: attendances[0], gamepiece: gp1)
-  eg2 = Eventgame.create(attendance: attendances[0], gamepiece: gp2)
-  eg3 = Eventgame.create(attendance: attendances[0], gamepiece: gp3)
-  eg4 = Eventgame.create(attendance: attendances[1], gamepiece: gp4)
+  # eg1 = Eventgame.create(attendance: attendances[0], gamepiece: gp1)
+  # eg2 = Eventgame.create(attendance: attendances[0], gamepiece: gp2)
+  # eg3 = Eventgame.create(attendance: attendances[0], gamepiece: gp3)
+  # eg4 = Eventgame.create(attendance: attendances[1], gamepiece: gp4)
 
 
 
