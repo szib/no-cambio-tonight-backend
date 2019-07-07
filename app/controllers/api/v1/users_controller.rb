@@ -73,6 +73,12 @@ class Api::V1::UsersController < ApplicationController
     each_serializer: EventsSerializer, current_user: current_user
   end
 
+  def upcoming_events
+    user = current_user
+    render json: user, root: "user", adapter: :json,
+    serializer: UpcomingEventsSerializer
+  end
+
   private
 
   def user_registration_params

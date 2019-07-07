@@ -14,6 +14,8 @@ Rails.application.routes.draw do
       delete '/profile', to: 'users#destroy'
       get '/organisedEvents', to: 'users#organised_events' 
       get '/attendedEvents', to: 'users#attended_events' 
+      get '/upcomingEvents', to: 'users#upcoming_events'
+
 
       resources :gamepieces, only: %i[show create destroy index], path: 'mygames'
       get '/games/search', to: 'games#search'
