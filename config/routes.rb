@@ -37,6 +37,7 @@ Rails.application.routes.draw do
 
       get '/categories', to: 'categories#index'
       get '/mechanics', to: 'mechanics#index'
+      get '/comments/:id', to: 'comments#show'
     end
   end
 end
