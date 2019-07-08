@@ -6,6 +6,15 @@
 #   movies = Movie.create([{ name: 'Star Wars' }, { name: 'Lord of the Rings' }])
 #   Character.create(name: 'Luke', movie: movies.first)
 
+categories = JSON.parse(File.read('db/categories.json'))
+categories['categories'].each do |category|
+  Category.create(category)
+end
+
+mechanics = JSON.parse(File.read('db/mechanics.json'))
+mechanics['mechanics'].each do |mechanic|
+  Mechanic.create(mechanic)
+end
 
 unless Rails.env.production?
   # Seed with games ["3xbCLNpbny", "fDn9rQjH9O", "GP7Y2xOUzj", "74f9mzbw9Y"]
