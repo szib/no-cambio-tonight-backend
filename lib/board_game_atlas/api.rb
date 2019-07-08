@@ -31,6 +31,18 @@ module BoardGameAtlas
         data['games'].map { |game| convert_game(game)}
       end
 
+      def convert_categories(categories)
+        result = []
+        categories.each { |category| result << Category.find_by(bga_id: category['id']) }
+        result.compact
+      end
+
+      def convert_mechanics(mechanics)
+        result = []
+        mechanics.each { |mechanic| result << Mechanic.find_by(bga_id: mechanic['id']) }
+        result.compact
+      end
+
       def convert_game(bga_game)
         game = {}
         game['bga_id'] = bga_game['id']
@@ -50,7 +62,12 @@ module BoardGameAtlas
         ]
         identical_keys.each { |key| game[key] = bga_game[key] }
 
+        game['categories'] = convert_categories(bga_game['categories'])
+        game['mechanics'] = convert_mechanics(bga_game['mechanics'])
+
         bga_game['images'].keys.each { |key| game["image_#{key}"] = bga_game['images'][key] }
+
+        # byebug
 
         game
       end
