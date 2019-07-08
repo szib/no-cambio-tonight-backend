@@ -19,7 +19,7 @@ class Api::V1::EventsController < ApplicationController
     @events = Event.all
     if @events
       render json: @events, root: "events", adapter: :json,
-      each_serializer: EventsSerializer, current_user: current_user
+      each_serializer: EventsSerializer, current_user: current_user, include: '**'
     else
       render json: { error: 'Cannot find event' }, status: 404
     end
@@ -27,7 +27,7 @@ class Api::V1::EventsController < ApplicationController
 
   def show
     if @event
-      render json: @event, root: "event", adapter: :json
+      render json: @event, root: "event", adapter: :json, include: '**'
     else
       render json: { error: 'Cannot find event' }, status: 404
     end
@@ -35,7 +35,7 @@ class Api::V1::EventsController < ApplicationController
 
   def update
     if @event.organiser === @user && @event.update_attributes(event_params)
-      render json: @event, root: "event", adapter: :json
+      render json: @event, root: "event", adapter: :json, include: '**'
     else
       render json: { error: 'Cannot update event.' }, status: 404
     end
@@ -45,7 +45,7 @@ class Api::V1::EventsController < ApplicationController
     if @event && @event.organiser === @user
       @event['is_cancelled'] = true
       if @event.save
-        render json: @event, root: "event", adapter: :json
+        render json: @event, root: "event", adapter: :json, include: '**'
       else
         render json: { error: 'Cannot save event' }, status: 500
       end

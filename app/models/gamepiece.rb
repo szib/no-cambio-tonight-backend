@@ -5,6 +5,4 @@ class Gamepiece < ApplicationRecord
   has_many :eventgames, dependent: :destroy
   has_many :attendances, through: :eventgames
 
-  has_many :categories, through: :game
-  has_many :mechanics, through: :game
 end

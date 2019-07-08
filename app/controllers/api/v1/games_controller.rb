@@ -17,7 +17,7 @@ class Api::V1::GamesController < ApplicationController
       game = Game.create_with(game_data).find_or_create_by(bga_id: game_data['bga_id'])
     end
     if game
-      render json: game, root: "game", adapter: :json
+      render json: game, root: "game", adapter: :json, include: '**'
     else
       render json: { error: 'Cannot save game.' }, status: 400
     end
