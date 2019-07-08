@@ -18,16 +18,16 @@ end
 
 unless Rails.env.production?
   # Seed with games ["3xbCLNpbny", "fDn9rQjH9O", "GP7Y2xOUzj", "74f9mzbw9Y"]
-  connection = ActiveRecord::Base.connection
-  sql = File.read('db/games.sql')
-  statements = sql.split(/;$/)
-  statements.pop
+  # connection = ActiveRecord::Base.connection
+  # sql = File.read('db/games.sql')
+  # statements = sql.split(/;$/)
+  # statements.pop
 
-  ActiveRecord::Base.transaction do
-    statements.each do |statement|
-      connection.execute(statement)
-    end
-  end
+  # ActiveRecord::Base.transaction do
+  #   statements.each do |statement|
+  #     connection.execute(statement)
+  #   end
+  # end
 
 
   def create_users(number)
@@ -108,11 +108,11 @@ unless Rails.env.production?
 
   attendances = Attendance.all
 
-  gp1 = Gamepiece.create(owner: User.find(3), game: Game.find(1))
-  gp2 = Gamepiece.create(owner: User.find(3), game: Game.find(2))
-  gp3 = Gamepiece.create(owner: User.find(3), game: Game.find(3))
-  gp4 = Gamepiece.create(owner: User.find(4), game: Game.find(1))
-  gp5 = Gamepiece.create(owner: User.find(4), game: Game.find(4))
+  # gp1 = Gamepiece.create(owner: User.find(3), game: Game.find(1))
+  # gp2 = Gamepiece.create(owner: User.find(3), game: Game.find(2))
+  # gp3 = Gamepiece.create(owner: User.find(3), game: Game.find(3))
+  # gp4 = Gamepiece.create(owner: User.find(4), game: Game.find(1))
+  # gp5 = Gamepiece.create(owner: User.find(4), game: Game.find(4))
 
   # eg1 = Eventgame.create(attendance: attendances[0], gamepiece: gp1)
   # eg2 = Eventgame.create(attendance: attendances[0], gamepiece: gp2)
