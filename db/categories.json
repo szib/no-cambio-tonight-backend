@@ -1,0 +1,420 @@
+{
+  "categories": [
+    {
+      "bga_id": "85OKv8p5Ow",
+      "name": "4x"
+    },
+    {
+      "bga_id": "hBqZ3Ar4RJ",
+      "name": "Abstract"
+    },
+    {
+      "bga_id": "KUBCKBkGxV",
+      "name": "Adventure"
+    },
+    {
+      "bga_id": "20iDvpbh7A",
+      "name": "Age of Reason"
+    },
+    {
+      "bga_id": "nWDac9tQzt",
+      "name": "Alternate History"
+    },
+    {
+      "bga_id": "4mOtRRwSoj",
+      "name": "American West"
+    },
+    {
+      "bga_id": "a8NM5cugJX",
+      "name": "Ancient"
+    },
+    {
+      "bga_id": "MWoxgHrOJD",
+      "name": "Animals"
+    },
+    {
+      "bga_id": "eFaACC6y2c",
+      "name": "Apocalyptic"
+    },
+    {
+      "bga_id": "QB4sEpx1Uu",
+      "name": "Aviation"
+    },
+    {
+      "bga_id": "PinhJrhnxU",
+      "name": "Bluffing"
+    },
+    {
+      "bga_id": "fW5vusE96B",
+      "name": "Campaign"
+    },
+    {
+      "bga_id": "eX8uuNlQkQ",
+      "name": "Card Game"
+    },
+    {
+      "bga_id": "HKaYVNIxAJ",
+      "name": "Children's Game"
+    },
+    {
+      "bga_id": "ODWOjWAJj3",
+      "name": "City Building"
+    },
+    {
+      "bga_id": "w8XD66FUZ2",
+      "name": "Civil War"
+    },
+    {
+      "bga_id": "329DxyFL9D",
+      "name": "Civilization"
+    },
+    {
+      "bga_id": "vXxLT0FDTZ",
+      "name": "Collectible Components"
+    },
+    {
+      "bga_id": "G5kfqnPBP6",
+      "name": "Comic Book / Strip"
+    },
+    {
+      "bga_id": "iTvYWFmD1c",
+      "name": "Conversation"
+    },
+    {
+      "bga_id": "bCBXJy9qDw",
+      "name": "Deduction"
+    },
+    {
+      "bga_id": "bKrxqD9mYc",
+      "name": "Dexterity"
+    },
+    {
+      "bga_id": "mavSOM8vjH",
+      "name": "Dice"
+    },
+    {
+      "bga_id": "We3MM46qBr",
+      "name": "Drinking"
+    },
+    {
+      "bga_id": "ZEW7DPFAE6",
+      "name": "Dungeons & Dragons"
+    },
+    {
+      "bga_id": "N0TkEGfEsF",
+      "name": "Economic"
+    },
+    {
+      "bga_id": "B3NRLMK4xD",
+      "name": "Educational"
+    },
+    {
+      "bga_id": "crxgUzJSEz",
+      "name": "Electronic"
+    },
+    {
+      "bga_id": "gsekjrPJz0",
+      "name": "Environmental"
+    },
+    {
+      "bga_id": "u5ZiYctU6T",
+      "name": "Espionage"
+    },
+    {
+      "bga_id": "h8wfZG0j3I",
+      "name": "Eurogame"
+    },
+    {
+      "bga_id": "v4SfYtS2Lr",
+      "name": "Expansion"
+    },
+    {
+      "bga_id": "yq6hVlbM2R",
+      "name": "Exploration"
+    },
+    {
+      "bga_id": "7rV11PKqME",
+      "name": "Family Game"
+    },
+    {
+      "bga_id": "ctumBZyj5l",
+      "name": "Fan Made"
+    },
+    {
+      "bga_id": "ZTneo8TaIO",
+      "name": "Fantasy"
+    },
+    {
+      "bga_id": "Wr8uXcoR9p",
+      "name": "Farming"
+    },
+    {
+      "bga_id": "upXZ8vNfNO",
+      "name": "Fighting"
+    },
+    {
+      "bga_id": "zNxFBqBHXA",
+      "name": "Fishing"
+    },
+    {
+      "bga_id": "3NDxCLUny4",
+      "name": "Flicking"
+    },
+    {
+      "bga_id": "YrDuNj8lvr",
+      "name": "Food"
+    },
+    {
+      "bga_id": "NR0vgCx5R7",
+      "name": "Halloween"
+    },
+    {
+      "bga_id": "cAIkk5aLdQ",
+      "name": "Horror"
+    },
+    {
+      "bga_id": "TYnxiuiI3X",
+      "name": "Humor"
+    },
+    {
+      "bga_id": "zqFmdU4Fp2",
+      "name": "Industry/Manufacturing"
+    },
+    {
+      "bga_id": "rrvd68LjOR",
+      "name": "Kickstarter"
+    },
+    {
+      "bga_id": "XeYUw9159M",
+      "name": "Legacy"
+    },
+    {
+      "bga_id": "nHZiDOXNla",
+      "name": "Luck"
+    },
+    {
+      "bga_id": "pIMmuVYnQp",
+      "name": "Mafia"
+    },
+    {
+      "bga_id": "POlqwScVxD",
+      "name": "Math"
+    },
+    {
+      "bga_id": "ZhlfIPxYsw",
+      "name": "Mature / Adult"
+    },
+    {
+      "bga_id": "c1AnMUJrTF",
+      "name": "Mecha"
+    },
+    {
+      "bga_id": "AeWXMxbm91",
+      "name": "Medical"
+    },
+    {
+      "bga_id": "QAYkTHK1Dd",
+      "name": "Medieval"
+    },
+    {
+      "bga_id": "AujCle9cUq",
+      "name": "Memory"
+    },
+    {
+      "bga_id": "FC6ElKI9tk",
+      "name": "Miniatures"
+    },
+    {
+      "bga_id": "L6NUwNdblq",
+      "name": "Modern Warfare"
+    },
+    {
+      "bga_id": "TJnR5obHsQ",
+      "name": "Movie Theme"
+    },
+    {
+      "bga_id": "Sod2YBWMKi",
+      "name": "Movies / TV / Radio theme"
+    },
+    {
+      "bga_id": "Kk70K0524Z",
+      "name": "Murder/Mystery"
+    },
+    {
+      "bga_id": "MHkqIVxwtx",
+      "name": "Mythology"
+    },
+    {
+      "bga_id": "IpcJzp0TVC",
+      "name": "Napoleonic"
+    },
+    {
+      "bga_id": "vqZ5XzGWQD",
+      "name": "Nautical"
+    },
+    {
+      "bga_id": "jZEDOpx07e",
+      "name": "Negotiation"
+    },
+    {
+      "bga_id": "mWb5kHTAg1",
+      "name": "Ninja's"
+    },
+    {
+      "bga_id": "dO9HVl2TW7",
+      "name": "Novel-based"
+    },
+    {
+      "bga_id": "X8J7RM6dxX",
+      "name": "Party Game"
+    },
+    {
+      "bga_id": "9EIayX6n5a",
+      "name": "Pirates"
+    },
+    {
+      "bga_id": "TKQncFVX74",
+      "name": "Political"
+    },
+    {
+      "bga_id": "8Z7nWG2kOw",
+      "name": "Post-Apocalyptic"
+    },
+    {
+      "bga_id": "5APB1MWk6X",
+      "name": "Post-Napoleonic"
+    },
+    {
+      "bga_id": "YyszHun1HP",
+      "name": "Prehistoric"
+    },
+    {
+      "bga_id": "ov6sEmlkiC",
+      "name": "Print & Play"
+    },
+    {
+      "bga_id": "WVMOS3s2pb",
+      "name": "Puzzle"
+    },
+    {
+      "bga_id": "2Gu62aKdma",
+      "name": "RPG"
+    },
+    {
+      "bga_id": "tQGLgwdbYH",
+      "name": "Racing"
+    },
+    {
+      "bga_id": "PzWI2uaif0",
+      "name": "Real-time"
+    },
+    {
+      "bga_id": "DRqeVkXWqX",
+      "name": "Religious"
+    },
+    {
+      "bga_id": "nuHYRFmMjU",
+      "name": "Renaissance"
+    },
+    {
+      "bga_id": "zyj9ZK3mHB",
+      "name": "Resource Management"
+    },
+    {
+      "bga_id": "E5rYwP0Ybr",
+      "name": "Romance"
+    },
+    {
+      "bga_id": "3B3QpKvXD3",
+      "name": "Sci-Fi"
+    },
+    {
+      "bga_id": "c6ei4hkUxm",
+      "name": "Socialite"
+    },
+    {
+      "bga_id": "0MdRqhkNpw",
+      "name": "Space Exploration"
+    },
+    {
+      "bga_id": "Hc6vcim5DS",
+      "name": "Spies/Secret Agents"
+    },
+    {
+      "bga_id": "hShsL2DktG",
+      "name": "Sports"
+    },
+    {
+      "bga_id": "O0ogzwLUe8",
+      "name": "Strategy"
+    },
+    {
+      "bga_id": "usFW8szGAq",
+      "name": "Superhero"
+    },
+    {
+      "bga_id": "yHTeXNjln0",
+      "name": "Tech"
+    },
+    {
+      "bga_id": "buDTYyPw4D",
+      "name": "Territory Building"
+    },
+    {
+      "bga_id": "vCzpbYT7RU",
+      "name": "Theme Park"
+    },
+    {
+      "bga_id": "JwHcKqxh33",
+      "name": "Trains"
+    },
+    {
+      "bga_id": "CWYOF9xu7O",
+      "name": "Transportation"
+    },
+    {
+      "bga_id": "TR4CiP8Huj",
+      "name": "Travel"
+    },
+    {
+      "bga_id": "YGHGDjahKY",
+      "name": "Trivia"
+    },
+    {
+      "bga_id": "djokexoK0U",
+      "name": "Video Game Theme"
+    },
+    {
+      "bga_id": "ssZjU3HETz",
+      "name": "War"
+    },
+    {
+      "bga_id": "jX8asGGR6o",
+      "name": "Wargame"
+    },
+    {
+      "bga_id": "EHUBCITA3t",
+      "name": "Western"
+    },
+    {
+      "bga_id": "rHvAx4hH2f",
+      "name": "Word Game"
+    },
+    {
+      "bga_id": "wTLJSVEbm6",
+      "name": "World War I"
+    },
+    {
+      "bga_id": "fl3TogdUzX",
+      "name": "World War II"
+    },
+    {
+      "bga_id": "OlkGBmu4Va",
+      "name": "World War III"
+    },
+    {
+      "bga_id": "FmGV9rVu1c",
+      "name": "Zombies"
+    }
+  ]
+}

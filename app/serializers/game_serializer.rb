@@ -4,4 +4,8 @@ class GameSerializer < ActiveModel::Serializer
   attributes :image_thumb, :image_small, :image_medium, :image_large, :image_original, :rules_url
 
   attribute :number_of_owners
+
+  has_many :categories, serializer: CategorySerializer
+  has_many :mechanics, serializer: MechanicSerializer
+
 end

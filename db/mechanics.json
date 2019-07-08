@@ -1,0 +1,360 @@
+{
+  "mechanics": [
+    {
+      "bga_id": "n1GtBt35Rd",
+      "name": "Acting"
+    },
+    {
+      "bga_id": "PGjmKGi26h",
+      "name": "Action / Movement Programming"
+    },
+    {
+      "bga_id": "oeg6wN9Eoc",
+      "name": "Action Point Allowance System"
+    },
+    {
+      "bga_id": "Bc7R8pLoGk",
+      "name": "Action Selection"
+    },
+    {
+      "bga_id": "05zCZoLvQJ",
+      "name": "Area Control"
+    },
+    {
+      "bga_id": "3te2oybNR4",
+      "name": "Area Enclosure"
+    },
+    {
+      "bga_id": "bgGxE0pI2B",
+      "name": "Area Movement"
+    },
+    {
+      "bga_id": "amcImLdOmD",
+      "name": "Asymmetric"
+    },
+    {
+      "bga_id": "AZxlPpi5oq",
+      "name": "Auction"
+    },
+    {
+      "bga_id": "3tuJiW3pps",
+      "name": "Betting"
+    },
+    {
+      "bga_id": "ZX3hYcF9H7",
+      "name": "Bluffing"
+    },
+    {
+      "bga_id": "UEzHyBWtz8",
+      "name": "Building"
+    },
+    {
+      "bga_id": "xuphiSlrxI",
+      "name": "Campaign"
+    },
+    {
+      "bga_id": "iWODHwRGuU",
+      "name": "Card Drafting"
+    },
+    {
+      "bga_id": "ebJKldFVeS",
+      "name": "Card Game"
+    },
+    {
+      "bga_id": "ngCSHHk0H2",
+      "name": "Card Placement"
+    },
+    {
+      "bga_id": "Gan96fffLL",
+      "name": "Chit-Pull System"
+    },
+    {
+      "bga_id": "K0ykGhTMa8",
+      "name": "Comodity Speculation"
+    },
+    {
+      "bga_id": "hwyCo1W0hi",
+      "name": "Conversation"
+    },
+    {
+      "bga_id": "33UT4gTFqy",
+      "name": "Cooperative"
+    },
+    {
+      "bga_id": "9mNukNBxfZ",
+      "name": "Cooperative Play"
+    },
+    {
+      "bga_id": "xVDf5dmJts",
+      "name": "Crayon Rail System"
+    },
+    {
+      "bga_id": "kZf6CVjtq7",
+      "name": "D6 RPG"
+    },
+    {
+      "bga_id": "vZsDDAdOoe",
+      "name": "Deck Building"
+    },
+    {
+      "bga_id": "GsNGxZFNCK",
+      "name": "Deduction"
+    },
+    {
+      "bga_id": "5kvyChnWuO",
+      "name": "Dexterity"
+    },
+    {
+      "bga_id": "lVSHu9efHv",
+      "name": "Dice Building"
+    },
+    {
+      "bga_id": "R0bGq4cAl4",
+      "name": "Dice Rolling"
+    },
+    {
+      "bga_id": "wV5peB05xs",
+      "name": "Drafting"
+    },
+    {
+      "bga_id": "KfTS5BwIsu",
+      "name": "Drawing"
+    },
+    {
+      "bga_id": "Ouo00D4ka7",
+      "name": "Drinking"
+    },
+    {
+      "bga_id": "yu3eas6v7A",
+      "name": "Engine Building"
+    },
+    {
+      "bga_id": "hUn7uJHrYm",
+      "name": "Euro Game"
+    },
+    {
+      "bga_id": "kS8npG0jl8",
+      "name": "Fighting"
+    },
+    {
+      "bga_id": "S0O9ucexPS",
+      "name": "Flicking"
+    },
+    {
+      "bga_id": "qu5BcGjAzk",
+      "name": "Grid Movement"
+    },
+    {
+      "bga_id": "WPytek5P8l",
+      "name": "Hand Management"
+    },
+    {
+      "bga_id": "i3xnwJ7VPV",
+      "name": "Hand-Eye Coordination"
+    },
+    {
+      "bga_id": "6CyVyXRn1C",
+      "name": "Hex and Counter"
+    },
+    {
+      "bga_id": "aQZ40lKv8O",
+      "name": "Hidden Movement"
+    },
+    {
+      "bga_id": "Voqy2dgrIM",
+      "name": "Hidden Traitor"
+    },
+    {
+      "bga_id": "DwmsVEvNVd",
+      "name": "Legacy"
+    },
+    {
+      "bga_id": "MaXzmoZUoX",
+      "name": "Line Drawing"
+    },
+    {
+      "bga_id": "UaLql58fua",
+      "name": "Live action and Role Playing game (Larp)"
+    },
+    {
+      "bga_id": "ar56ACXDNe",
+      "name": "Mancala"
+    },
+    {
+      "bga_id": "r6yIFvyXDD",
+      "name": "Memory"
+    },
+    {
+      "bga_id": "U3zhCQH7Et",
+      "name": "Modular Board"
+    },
+    {
+      "bga_id": "UHdPUeuqyZ",
+      "name": "Paper and Pencil"
+    },
+    {
+      "bga_id": "GNtouC8NLm",
+      "name": "Partnerships"
+    },
+    {
+      "bga_id": "3dFd0RwsY4",
+      "name": "Party Game"
+    },
+    {
+      "bga_id": "9YdRn9J9oZ",
+      "name": "Pattern Building"
+    },
+    {
+      "bga_id": "uZJS07nXF5",
+      "name": "Pattern Recognition"
+    },
+    {
+      "bga_id": "BbTMRkwL0b",
+      "name": "Pick-up and Deliver"
+    },
+    {
+      "bga_id": "BGrhzIN69D",
+      "name": "Player Elimination"
+    },
+    {
+      "bga_id": "YyBg5CzHBF",
+      "name": "Player vs. Player"
+    },
+    {
+      "bga_id": "MEAoOygZsA",
+      "name": "Point to Point Movement"
+    },
+    {
+      "bga_id": "ea1eaPBQn8",
+      "name": "Pool Building"
+    },
+    {
+      "bga_id": "hmipYN1R1I",
+      "name": "Press Your Luck"
+    },
+    {
+      "bga_id": "24FWssBC3o",
+      "name": "Puzzle"
+    },
+    {
+      "bga_id": "E9VKQ8uMSP",
+      "name": "Real Time"
+    },
+    {
+      "bga_id": "Rt6V388y6M",
+      "name": "Resource Gathering"
+    },
+    {
+      "bga_id": "j7x8jY4ay2",
+      "name": "Rock-Paper-Scissors"
+    },
+    {
+      "bga_id": "EVeAdboGUA",
+      "name": "Role Playing"
+    },
+    {
+      "bga_id": "mGBzR68m8Z",
+      "name": "Roll / Spin and Move"
+    },
+    {
+      "bga_id": "zIPRS41oiN",
+      "name": "Roll and Write"
+    },
+    {
+      "bga_id": "FA6HjbhdNW",
+      "name": "Rondel"
+    },
+    {
+      "bga_id": "asw8k7EIJI",
+      "name": "Route Building"
+    },
+    {
+      "bga_id": "c6gkRM7rSy",
+      "name": "Route/Network Building"
+    },
+    {
+      "bga_id": "RwgEONzIzc",
+      "name": "Secret Unit Deployment"
+    },
+    {
+      "bga_id": "lA3KUtVFCy",
+      "name": "Set Collection"
+    },
+    {
+      "bga_id": "eRe1jJCBFe",
+      "name": "Simulation"
+    },
+    {
+      "bga_id": "DEvPj5twid",
+      "name": "Simultaneous Play"
+    },
+    {
+      "bga_id": "za4PP1LH00",
+      "name": "Simultaneous action selection"
+    },
+    {
+      "bga_id": "x3wVCq1HEP",
+      "name": "Social Deduction"
+    },
+    {
+      "bga_id": "jbLrZb1xIb",
+      "name": "Stock Holding"
+    },
+    {
+      "bga_id": "GUoWg3Mfh5",
+      "name": "Storytelling"
+    },
+    {
+      "bga_id": "yDlgk7rXno",
+      "name": "Tactical Movement"
+    },
+    {
+      "bga_id": "jCRze30VP1",
+      "name": "Tactics"
+    },
+    {
+      "bga_id": "T8JEFYwoqy",
+      "name": "Take That"
+    },
+    {
+      "bga_id": "9jnCsVuRat",
+      "name": "Teams"
+    },
+    {
+      "bga_id": "8PN2HE86wg",
+      "name": "Tile Placement"
+    },
+    {
+      "bga_id": "cXd5KaXXZo",
+      "name": "Time Track"
+    },
+    {
+      "bga_id": "AVY6EvSQTP",
+      "name": "Trading"
+    },
+    {
+      "bga_id": "3GSQl800lk",
+      "name": "Trick-taking"
+    },
+    {
+      "bga_id": "zzsE4jtI1b",
+      "name": "Variable Phase Order"
+    },
+    {
+      "bga_id": "XM2FYZmBHH",
+      "name": "Variable Player Powers"
+    },
+    {
+      "bga_id": "JYYdBW6UCE",
+      "name": "Voting"
+    },
+    {
+      "bga_id": "yomuPpKFx4",
+      "name": "Wargame"
+    },
+    {
+      "bga_id": "fBOTEBUAmV",
+      "name": "Worker Placement"
+    }
+  ]
+}

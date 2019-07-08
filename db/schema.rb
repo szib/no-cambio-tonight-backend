@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2019_07_02_063728) do
+ActiveRecord::Schema.define(version: 2019_07_08_080613) do
 
   create_table "attendances", force: :cascade do |t|
     t.integer "attendee_id"
@@ -19,6 +19,20 @@ ActiveRecord::Schema.define(version: 2019_07_02_063728) do
     t.datetime "updated_at", null: false
     t.index ["attendee_id"], name: "index_attendances_on_attendee_id"
     t.index ["event_id"], name: "index_attendances_on_event_id"
+  end
+
+  create_table "categories", force: :cascade do |t|
+    t.string "bga_id"
+    t.string "name"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
+  create_table "categories_games", id: false, force: :cascade do |t|
+    t.integer "game_id", null: false
+    t.integer "category_id", null: false
+    t.index ["category_id"], name: "index_categories_games_on_category_id"
+    t.index ["game_id"], name: "index_categories_games_on_game_id"
   end
 
   create_table "eventgames", force: :cascade do |t|
@@ -70,6 +84,20 @@ ActiveRecord::Schema.define(version: 2019_07_02_063728) do
     t.string "image_large"
     t.string "image_original"
     t.string "rules_url"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
+  create_table "games_mechanics", id: false, force: :cascade do |t|
+    t.integer "game_id", null: false
+    t.integer "mechanic_id", null: false
+    t.index ["game_id"], name: "index_games_mechanics_on_game_id"
+    t.index ["mechanic_id"], name: "index_games_mechanics_on_mechanic_id"
+  end
+
+  create_table "mechanics", force: :cascade do |t|
+    t.string "bga_id"
+    t.string "name"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
   end

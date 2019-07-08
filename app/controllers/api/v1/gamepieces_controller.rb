@@ -8,7 +8,7 @@ class Api::V1::GamepiecesController < ApplicationController
 
   def index
     if @user
-      render json: @user.gamepieces, root: "game_pieces", adapter: :json
+      render json: @user.gamepieces, root: "game_pieces", adapter: :json, include: '**'
     else
       render json: { error: 'Invalid user id' }, status: 404
     end
@@ -17,7 +17,7 @@ class Api::V1::GamepiecesController < ApplicationController
   def show
     gp = Gamepiece.find_by(id: params[:id])
     if gp && gp.owner === current_user
-      render json: gp, status: 200
+      render json: gp, status: 200, include: '**'
     else
       render json: { error: 'Cannot get this game' }, status: 404
     end
@@ -34,7 +34,7 @@ class Api::V1::GamepiecesController < ApplicationController
 
     gp = Gamepiece.find_by(owner: @user, game: game)
     gp ||= Gamepiece.create(owner: @user, game: game)
-    render json: gp, root: "game_piece", adapter: :json
+    render json: gp, root: "game_piece", adapter: :json, include: '**'
   end
 
   def destroy

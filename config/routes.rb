@@ -34,6 +34,9 @@ Rails.application.routes.draw do
       end
       # cancel
       get '/events/:id/cancel', to: 'events#cancel'
+
+      get '/categories', to: 'categories#index'
+      get '/mechanics', to: 'mechanics#index'
     end
   end
 end
