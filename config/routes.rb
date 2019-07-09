@@ -31,6 +31,10 @@ Rails.application.routes.draw do
         get '/games', to: 'eventgames#index'
         post '/addgame', to: 'eventgames#create'
         delete '/removegame', to: 'eventgames#destroy'
+
+        #comments
+        get '/comments', to: 'comments#events_index'
+        post '/comments', to: 'comments#events_create'
       end
       # cancel
       get '/events/:id/cancel', to: 'events#cancel'
