@@ -15,7 +15,17 @@ class Api::V1::CommentsController < ApplicationController
   end
 
   def events_create
-    render json: { error: 'Not implemented' }, status: 418
+    comment = Comment.new(comment_params)
+    comment.commentable = @event
+    if comment.save
+      render json: @event.comments, root: 'comments', adapter: :json
+    else
+      render json: { error: 'Cannot create comment' }, status: 400
+    end
+  end
+
+  def comment_params
+    params.permit(:author_id, :comment_text)
   end
 
   def find_event
