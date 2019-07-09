@@ -18,16 +18,16 @@ end
 
 unless Rails.env.production?
   # Seed with games ["3xbCLNpbny", "fDn9rQjH9O", "GP7Y2xOUzj", "74f9mzbw9Y"]
-  # connection = ActiveRecord::Base.connection
-  # sql = File.read('db/games.sql')
-  # statements = sql.split(/;$/)
-  # statements.pop
+  connection = ActiveRecord::Base.connection
+  sql = File.read('db/games.sql')
+  statements = sql.split(/;$/)
+  statements.pop
 
-  # ActiveRecord::Base.transaction do
-  #   statements.each do |statement|
-  #     connection.execute(statement)
-  #   end
-  # end
+  ActiveRecord::Base.transaction do
+    statements.each do |statement|
+      connection.execute(statement)
+    end
+  end
 
 
   def create_users(number)
@@ -99,25 +99,39 @@ unless Rails.env.production?
   # a2 = Attendance.create(attendee: User.find(4), event: events[1])
   # a3 = Attendance.create(attendee: User.find(3), event: events[2])
 
+  def create_comment(author, commentable)
+    creation_time = Faker::Time.backward(10)
+    Comment.create(
+      author: author,
+      commentable: commentable, 
+      comment_text: Faker::Movies::BackToTheFuture.quote,
+      created_at: creation_time,
+      updated_at: creation_time,
+      )
+  end
+
   events.each do |event|
     attendees = User.all.sample((3..10).to_a.sample)
     attendees.each do |attendee|
       Attendance.create(attendee: attendee, event: event)
       creation_time = Faker::Time.backward(10)
-      Comment.create(
-        author: attendee, 
-        commentable: event, 
-        comment_text: Faker::Movies::BackToTheFuture.quote,
-        created_at: creation_time,
-        updated_at: creation_time,
-        )
+      create_comment(attendee, event)
     end
   end
 
   attendances = Attendance.all
 
-  # gp1 = Gamepiece.create(owner: User.find(3), game: Game.find(1))
-  # gp2 = Gamepiece.create(owner: User.find(3), game: Game.find(2))
+  u4 = User.find(4)
+
+  gp1 = Gamepiece.create(owner: u4, game: Game.find(1))
+  gp2 = Gamepiece.create(owner: u4, game: Game.find(2))
+
+  5.times do
+    create_comment(u4, gp1)
+    create_comment(u4, gp2)
+  end
+
+
   # gp3 = Gamepiece.create(owner: User.find(3), game: Game.find(3))
   # gp4 = Gamepiece.create(owner: User.find(4), game: Game.find(1))
   # gp5 = Gamepiece.create(owner: User.find(4), game: Game.find(4))
