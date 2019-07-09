@@ -16,7 +16,7 @@ class Api::V1::EventsController < ApplicationController
   end
 
   def index
-    @events = Event.all
+    @events = Event.all.sort_by(&:start_date_time).reverse
     if @events
       render json: @events, root: "events", adapter: :json,
       each_serializer: EventsSerializer, current_user: current_user, include: '**'

@@ -9,6 +9,8 @@ class User < ApplicationRecord
   has_many :gamepieces, foreign_key: :owner_id, dependent: :destroy
   has_many :games, through: :gamepieces
 
+  has_many :comments, class_name: 'Comment' , foreign_key: :author_id, dependent: :destroy
+
   validates :username, uniqueness: { case_sensitive: false }
 
   validates :password, presence: true, on: [:create]

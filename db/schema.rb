@@ -35,6 +35,17 @@ ActiveRecord::Schema.define(version: 2019_07_08_080613) do
     t.index ["game_id"], name: "index_categories_games_on_game_id"
   end
 
+  create_table "comments", force: :cascade do |t|
+    t.integer "author_id"
+    t.string "commentable_type", default: "Comment"
+    t.integer "commentable_id"
+    t.string "comment_text"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["author_id"], name: "index_comments_on_author_id"
+    t.index ["commentable_type", "commentable_id"], name: "index_comments_on_commentable_type_and_commentable_id"
+  end
+
   create_table "eventgames", force: :cascade do |t|
     t.integer "attendance_id"
     t.integer "gamepiece_id"

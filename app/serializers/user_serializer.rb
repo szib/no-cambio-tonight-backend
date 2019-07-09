@@ -30,6 +30,10 @@ class UserSerializer < ActiveModel::Serializer
     object.attended_events.size
   end
 
+  attribute :number_of_comments do
+    object.attended_events.size
+  end
+
   def is_current_user?
     object.id === current_user.id
   end
