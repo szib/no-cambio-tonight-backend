@@ -103,6 +103,7 @@ unless Rails.env.production?
     attendees = User.all.sample((3..10).to_a.sample)
     attendees.each do |attendee|
       Attendance.create(attendee: attendee, event: event)
+      Comment.create(author: attendee, commentable: event, comment_text: Faker::Movies::BackToTheFuture.quote)
     end
   end
 
@@ -119,6 +120,8 @@ unless Rails.env.production?
   # eg3 = Eventgame.create(attendance: attendances[0], gamepiece: gp3)
   # eg4 = Eventgame.create(attendance: attendances[1], gamepiece: gp4)
 
+
+  
 
 
 end

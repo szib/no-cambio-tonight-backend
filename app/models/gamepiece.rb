@@ -5,4 +5,6 @@ class Gamepiece < ApplicationRecord
   has_many :eventgames, dependent: :destroy
   has_many :attendances, through: :eventgames
 
+  has_many :comments, as: :commentable
+
 end
