@@ -7,7 +7,7 @@ class EventSerializer < ActiveModel::Serializer
   has_one :organiser, serializer: UserSerializer
   has_many :attendees
   has_many :gamepieces, serializer: GamepieceSerializer
-  has_many :comments, serializer: CommentSerializer
+  # has_many :comments, serializer: CommentSerializer
 
   def is_current_user_attending
     !object.attendees.find_by(id: current_user.id).nil?
