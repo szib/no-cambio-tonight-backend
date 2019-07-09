@@ -103,7 +103,14 @@ unless Rails.env.production?
     attendees = User.all.sample((3..10).to_a.sample)
     attendees.each do |attendee|
       Attendance.create(attendee: attendee, event: event)
-      Comment.create(author: attendee, commentable: event, comment_text: Faker::Movies::BackToTheFuture.quote)
+      creation_time = Faker::Time.backward(10)
+      Comment.create(
+        author: attendee, 
+        commentable: event, 
+        comment_text: Faker::Movies::BackToTheFuture.quote,
+        created_at: creation_time,
+        updated_at: creation_time,
+        )
     end
   end
 

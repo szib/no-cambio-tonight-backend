@@ -6,7 +6,7 @@ class Event < ApplicationRecord
   has_many :eventgames, through: :attendances
   has_many :gamepieces, through: :eventgames
 
-  has_many :comments, as: :commentable
+  has_many :comments,-> { order "created_at DESC" }, as: :commentable
 
   def gamelist
     attendances.map(&:gamepieces).flatten.map(&:game).uniq
