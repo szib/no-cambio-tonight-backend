@@ -6,29 +6,34 @@
 #   movies = Movie.create([{ name: 'Star Wars' }, { name: 'Lord of the Rings' }])
 #   Character.create(name: 'Luke', movie: movies.first)
 
-categories = JSON.parse(File.read('db/categories.json'))
-categories['categories'].each do |category|
+games_json = JSON.parse(File.read('db/games.json'))
+games_json.each do |game|
+  Game.create(game)
+end
+games = Game.all
+
+categories_json = JSON.parse(File.read('db/categories.json'))
+categories_json['categories'].each do |category|
   Category.create(category)
 end
 
-mechanics = JSON.parse(File.read('db/mechanics.json'))
-mechanics['mechanics'].each do |mechanic|
+mechanics_json = JSON.parse(File.read('db/mechanics.json'))
+mechanics_json['mechanics'].each do |mechanic|
   Mechanic.create(mechanic)
 end
 
 unless Rails.env.production?
   # Seed with games ["3xbCLNpbny", "fDn9rQjH9O", "GP7Y2xOUzj", "74f9mzbw9Y"]
-  connection = ActiveRecord::Base.connection
-  sql = File.read('db/games.sql')
-  statements = sql.split(/;$/)
-  statements.pop
+  # connection = ActiveRecord::Base.connection
+  # sql = File.read('db/games.sql')
+  # statements = sql.split(/;$/)
+  # statements.pop
 
-  ActiveRecord::Base.transaction do
-    statements.each do |statement|
-      connection.execute(statement)
-    end
-  end
-
+  # ActiveRecord::Base.transaction do
+  #   statements.each do |statement|
+  #     connection.execute(statement)
+  #   end
+  # end
 
   def create_users(number)
     users = []
@@ -42,7 +47,7 @@ unless Rails.env.production?
       end
       last_name = Faker::Name.last_name
       email = Faker::Internet.email("#{first_name} #{last_name}", '.')
-
+      
       user =   {
         username: "user#{user_idx}",
         password: password,
@@ -59,18 +64,20 @@ unless Rails.env.production?
   end
 
   def create_events(number)
-    titles = ['Board game night', 'No Cambio at all', 'Dragons vs. Kittens', 'Weekly Carcassonne', 
-      'Snakes & Ladders', 'Secret meeting of The Tea Dragon Society', 'Bears vs. Babies', '[object Object] 🤪']
-    events = []
+    titles = ['Board game night', 'Anything but Cambio', 'Dragons and Kittens',
+       'Weekly Carcassonne', 'Snakes & Ladders', 'Secret meeting of The Tea Dragon Society', 
+       'Bears vs. Babies', '[object Object] 🤪', 'Cards against Humanity', 'Throw Throw Burrito',
+      ]
+      events = []
     number.times do |idx|
       event_idx = idx + 1
-      start_date_time = Faker::Time.forward(14)
+      start_date_time = Faker::Time.between(2.weeks.ago, 2.weeks.from_now)
       end_date_time = start_date_time + [120,180,240,300,360].sample.minutes 
       
       event = {
         organiser: User.all.sample,
         title: titles.sample,
-        location: Faker::Restaurant.name + ' ,' + Faker::Address.full_address,
+        location: Faker::Restaurant.name,
         start_date_time: start_date_time,
         end_date_time: end_date_time,
       }
@@ -80,71 +87,75 @@ unless Rails.env.production?
     Event.all
   end
 
-  users = create_users(30)
-  
-  # user 3 has game 1,2,3   attend: event 1,2   bring: game 1,2 to event 1, game 3 to event 2
-  # user 4 has game 1,4     attend: event 1     bring: game 1 to event 1
-  
-  # e1 = Event.create(organiser: users[0], title: 'Fix Event1', location: 'Fix Location1',
-  #    start_date_time: Faker::Time.forward(14, :afternoon), 
-  #    end_date_time: Faker::Time.between(DateTime.now + 7, DateTime.now + 7, :evening)) # attend: user 3,4
-  # e2 = Event.create(organiser: users[0], title: 'Fix Event2', location: 'Fix Location2',
-  #    start_date_time: Faker::Time.forward(14, :afternoon), 
-  #    end_date_time: Faker::Time.between(DateTime.now + 7, DateTime.now + 7, :evening)) # attend: user 3
-  # e3 = Event.create(organiser: users[1], title: 'Fix Event3', location: 'Fix Location3',
-  #    start_date_time: Faker::Time.forward(14, :afternoon), 
-  #    end_date_time: Faker::Time.between(DateTime.now + 7, DateTime.now + 7, :evening))
-  
-  events = create_events(15)
-  
-  # a1 = Attendance.create(attendee: User.find(3), event: events[0]) 
-  # a2 = Attendance.create(attendee: User.find(4), event: events[1])
-  # a3 = Attendance.create(attendee: User.find(3), event: events[2])
-
   def create_comment(author, commentable)
     creation_time = Faker::Time.backward(10)
+    comment_text = [
+      Faker::Movies::HitchhikersGuideToTheGalaxy.quote,
+      Faker::Movies::BackToTheFuture.quote,
+      Faker::Movies::Lebowski.quote,
+      Faker::Movies::Ghostbusters.quote,
+      Faker::Movie.quote,
+      Faker::TvShows::TheITCrowd.quote,
+      Faker::TvShows::Simpsons.quote,
+      Faker::TvShows::GameOfThrones.quote,
+    ].sample
     Comment.create(
       author: author,
       commentable: commentable, 
-      comment_text: Faker::Movies::BackToTheFuture.quote,
+      comment_text: comment_text,
       created_at: creation_time,
       updated_at: creation_time,
       )
   end
 
+  def create_comments(users, commentable, count)
+    count.times do
+      create_comment(users.sample, commentable)
+    end
+  end
+  
+  puts '==> Users'
+  users = create_users(50)
+  puts '==> Users done'
+  
+  puts '==> Events'
+  events = create_events(10)
+  puts '==> Events done'
+  
+  puts '==> Attendance with comments'
   events.each do |event|
     attendees = User.all.sample((3..10).to_a.sample)
     attendees.each do |attendee|
       Attendance.create(attendee: attendee, event: event)
-      creation_time = Faker::Time.backward(10)
-      create_comment(attendee, event)
+    end
+    create_comments(users, event, (0..5).to_a.sample)
+  end
+  attendances = Attendance.all
+  puts '==> Attendance with comments done'
+  
+  
+  puts '==> Gamepieces with comments'
+  users.each do |user|
+    number_of_games = (0..10).to_a.sample
+    users_games = games.sample(number_of_games)
+    users_games.each do |game|
+      gp = Gamepiece.create(owner: user, game: game)
+      create_comments(users, gp, (0..5).to_a.sample)
     end
   end
-
-  attendances = Attendance.all
-
-  u4 = User.find(4)
-
-  gp1 = Gamepiece.create(owner: u4, game: Game.find(1))
-  gp2 = Gamepiece.create(owner: u4, game: Game.find(2))
-
-  5.times do
-    create_comment(u4, gp1)
-    create_comment(u4, gp2)
-  end
-
-
-  # gp3 = Gamepiece.create(owner: User.find(3), game: Game.find(3))
-  # gp4 = Gamepiece.create(owner: User.find(4), game: Game.find(1))
-  # gp5 = Gamepiece.create(owner: User.find(4), game: Game.find(4))
-
-  # eg1 = Eventgame.create(attendance: attendances[0], gamepiece: gp1)
-  # eg2 = Eventgame.create(attendance: attendances[0], gamepiece: gp2)
-  # eg3 = Eventgame.create(attendance: attendances[0], gamepiece: gp3)
-  # eg4 = Eventgame.create(attendance: attendances[1], gamepiece: gp4)
-
-
+  puts '==> Gamepieces with comments done'
   
+  puts '==> Eventgames'
+  attendances.each do |attendance|
+    gamepieces = attendance.attendee.gamepieces
+    library_size = gamepieces.size
+    next if library_size < 1
 
+    brought_games = gamepieces.sample((0..library_size-1).to_a.sample)
+    brought_games.each do |gamepiece|
+      Eventgame.create(gamepiece: gamepiece, attendance: attendance)
+    end
+  end
+  puts '==> Eventgames done'
 
 end
