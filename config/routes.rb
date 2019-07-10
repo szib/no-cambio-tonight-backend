@@ -38,10 +38,16 @@ Rails.application.routes.draw do
       end
       # cancel
       get '/events/:id/cancel', to: 'events#cancel'
-
+      
       get '/categories', to: 'categories#index'
       get '/mechanics', to: 'mechanics#index'
       get '/comments/:id', to: 'comments#show'
+      
+      get '/users/:user_id/gameitems', to: 'users#gameitems'
+      get '/gameitems/:id', to: 'gamepieces#show2'
+
+      get '/gameitems/:gameitem_id/comments', to: 'comments#gameitems_index'
+      post '/gameitems/:gameitem_id/comments', to: 'comments#gameitems_create'
     end
   end
 end

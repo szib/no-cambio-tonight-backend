@@ -72,12 +72,23 @@ class Api::V1::UsersController < ApplicationController
     render json: @events, root: "events", adapter: :json,
     each_serializer: EventsSerializer, current_user: current_user
   end
-
+  
   def upcoming_events
     user = current_user
     render json: user, root: "user", adapter: :json,
     serializer: UpcomingEventsSerializer
   end
+
+  def gameitems
+    user = User.find_by(id: params[:user_id])
+    if user
+      gameitems = user.gamepieces
+      render json: gameitems, root: "gameitems", adapter: :json, include: '**'
+    else
+      render json: { error: 'User not found.' }, status: 404
+    end
+  end
+  
 
   private
 

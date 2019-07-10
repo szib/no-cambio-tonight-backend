@@ -23,6 +23,15 @@ class Api::V1::GamepiecesController < ApplicationController
     end
   end
 
+  def show2
+    gp = Gamepiece.find_by(id: params[:id])
+    if gp
+      render json: gp, status: 200,root: "gameitem", adapter: :json, include: '**'
+    else
+      render json: { error: 'Cannot get this game' }, status: 404
+    end
+  end
+
   def create
     game = Game.find_by(bga_id: params[:bga_id])
     unless game

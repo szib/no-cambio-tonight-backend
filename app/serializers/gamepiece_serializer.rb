@@ -3,5 +3,4 @@ class GamepieceSerializer < ActiveModel::Serializer
   attribute :game, serializer: GameSerializer
   has_many :comments, serializer: CommentSerializer
   belongs_to :game, serializer: GameSerializer
-
 end

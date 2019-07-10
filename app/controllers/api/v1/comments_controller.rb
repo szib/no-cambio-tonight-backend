@@ -13,12 +13,32 @@ class Api::V1::CommentsController < ApplicationController
       render json: { error: 'Cannot find event' }, status: 400
     end
   end
-
+  
   def events_create
     comment = Comment.new(comment_params)
     comment.commentable = @event
     if comment.save
       render json: @event.comments, root: 'comments', adapter: :json
+    else
+      render json: { error: 'Cannot create comment' }, status: 400
+    end
+  end
+
+  def gameitems_index
+    gameitem = Gamepiece.find_by(id: params[:gameitem_id])
+    if gameitem
+      render json: gameitem.comments, root: 'comments', adapter: :json
+    else
+      render json: { error: 'Cannot find event' }, status: 400
+    end
+  end
+
+  def gameitems_create
+    comment = Comment.new(comment_params)
+    gameitem = Gamepiece.find_by(id: params[:gameitem_id])
+    comment.commentable = gameitem
+    if comment.save
+      render json: gameitem.comments, root: 'comments', adapter: :json
     else
       render json: { error: 'Cannot create comment' }, status: 400
     end

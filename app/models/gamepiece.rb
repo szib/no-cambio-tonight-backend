@@ -5,6 +5,6 @@ class Gamepiece < ApplicationRecord
   has_many :eventgames, dependent: :destroy
   has_many :attendances, through: :eventgames
 
-  has_many :comments, as: :commentable
+  has_many :comments,-> { order "created_at DESC" }, as: :commentable
 
 end
