@@ -67,12 +67,8 @@ module BoardGameAtlas
 
         bga_game['images'].keys.each { |key| game["image_#{key}"] = bga_game['images'][key] }
 
-        # byebug
-
         game
       end
-
-
     end
   end
 end

@@ -4,7 +4,6 @@ class Api::V1::EventgamesController < ApplicationController
   before_action :find_event
 
   def index
-    byebug
     if @event
       render json: @event.gamepieces, root: "game_pieces", adapter: :json
     else

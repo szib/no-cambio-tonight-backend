@@ -34,6 +34,10 @@ class UserSerializer < ActiveModel::Serializer
     object.attended_events.size
   end
 
+  attribute :number_of_owned_games do
+    object.gamepieces.size
+  end
+
   def is_current_user?
     object.id === current_user.id
   end
