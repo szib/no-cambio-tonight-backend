@@ -59,6 +59,8 @@ unless Rails.env.production?
   end
 
   def create_events(number)
+    titles = ['Board game night', 'No Cambio at all', 'Dragons vs. Kittens', 'Weekly Carcassonne', 
+      'Snakes & Ladders', 'Secret meeting of The Tea Dragon Society', 'Bears vs. Babies', '[object Object] 🤪']
     events = []
     number.times do |idx|
       event_idx = idx + 1
@@ -67,8 +69,8 @@ unless Rails.env.production?
       
       event = {
         organiser: User.all.sample,
-        title: "Event #{event_idx}",
-        location: "Location #{event_idx}",
+        title: titles.sample,
+        location: Faker::Restaurant.name + ' ,' + Faker::Address.full_address,
         start_date_time: start_date_time,
         end_date_time: end_date_time,
       }
