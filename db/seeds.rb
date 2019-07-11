@@ -39,7 +39,7 @@ unless Rails.env.production?
     users = []
     number.times do |idx|
       user_idx = idx + 1
-      password = "#{user_idx}" * 6
+      password = '123456'
       if idx.even?
         first_name = Faker::Name.female_first_name
       else
