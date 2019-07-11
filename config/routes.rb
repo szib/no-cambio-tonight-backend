@@ -7,7 +7,7 @@ Rails.application.routes.draw do
       post '/signin', to: 'users#signin' # username, password => token
       get '/validate', to: 'users#validate' # token => user || error
 
-      resources :users, only: %i[create show]
+      resources :users, only: %i[create show index]
 
       get '/profile', to: 'users#profile'
       patch '/profile', to: 'users#patch_profile'
