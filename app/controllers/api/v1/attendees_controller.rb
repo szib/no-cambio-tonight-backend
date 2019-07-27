@@ -3,13 +3,13 @@
 class Api::V1::AttendeesController < ApplicationController
   before_action :find_event
 
-  def index
-    if @event
-      render json: @event.attendees, root: "attendees", adapter: :json
-    else
-      render json: { error: 'Cannot find event' }, status: 404
-    end
-  end
+  # def index
+  #   if @event
+  #     render json: @event.attendees, root: "attendees", adapter: :json
+  #   else
+  #     render json: { error: 'Cannot find event' }, status: 404
+  #   end
+  # end
 
   def create
     @attendance = Attendance.find_or_create_by(event: @event, attendee: current_user)
