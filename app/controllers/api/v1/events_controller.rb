@@ -33,13 +33,13 @@ class Api::V1::EventsController < ApplicationController
     end
   end
 
-  def update
-    if @event.organiser === @user && @event.update_attributes(event_params)
-      render json: @event, root: "event", adapter: :json, include: '**'
-    else
-      render json: { error: 'Cannot update event.' }, status: 404
-    end
-  end
+  # def update
+  #   if @event.organiser === @user && @event.update_attributes(event_params)
+  #     render json: @event, root: "event", adapter: :json, include: '**'
+  #   else
+  #     render json: { error: 'Cannot update event.' }, status: 404
+  #   end
+  # end
 
   def cancel
     if @event && @event.organiser === @user

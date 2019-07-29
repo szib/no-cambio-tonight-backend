@@ -10,18 +10,18 @@ class Api::V1::GamesController < ApplicationController
   end
 
   # save a game by bga_id
-  def save
-    game = Game.find_by(bga_id: params[:bga_id])
-    unless game
-      game_data = BoardGameAtlas::API.find_by_id(params[:bga_id])
-      game = Game.create_with(game_data).find_or_create_by(bga_id: game_data['bga_id'])
-    end
-    if game
-      render json: game, root: "game", adapter: :json, include: '**'
-    else
-      render json: { error: 'Cannot save game.' }, status: 400
-    end
-  end
+  # def save
+  #   game = Game.find_by(bga_id: params[:bga_id])
+  #   unless game
+  #     game_data = BoardGameAtlas::API.find_by_id(params[:bga_id])
+  #     game = Game.create_with(game_data).find_or_create_by(bga_id: game_data['bga_id'])
+  #   end
+  #   if game
+  #     render json: game, root: "game", adapter: :json, include: '**'
+  #   else
+  #     render json: { error: 'Cannot save game.' }, status: 400
+  #   end
+  # end
 
   private
 
