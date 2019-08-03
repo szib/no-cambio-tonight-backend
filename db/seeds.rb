@@ -71,7 +71,7 @@ unless Rails.env.production?
       events = []
     number.times do |idx|
       event_idx = idx + 1
-      start_date_time = Faker::Time.between(2.weeks.ago, 2.weeks.from_now)
+      start_date_time = Faker::Time.between(1.weeks.ago, 3.weeks.from_now)
       end_date_time = start_date_time + [120,180,240,300,360].sample.minutes 
       
       event = {
@@ -115,17 +115,18 @@ unless Rails.env.production?
   end
   
   puts '==> Users'
-  users = create_users(50)
+  users = create_users(20)
   puts '==> Users done'
   
   puts '==> Events'
-  events = create_events(10)
+  events = create_events(12)
   puts '==> Events done'
   
   puts '==> Attendance with comments'
   events.each do |event|
-    attendees = User.all.sample((3..10).to_a.sample)
-    attendees.each do |attendee|
+    attendees = User.all.sample((0..5).to_a.sample)
+    attendees << event.organiser
+    attendees.uniq.each do |attendee|
       Attendance.create(attendee: attendee, event: event)
     end
     create_comments(users, event, (0..5).to_a.sample)

@@ -10,25 +10,17 @@ Rails.application.routes.draw do
       resources :users, only: %i[create show index]
 
       get '/profile', to: 'users#profile'
-      patch '/profile', to: 'users#patch_profile'
-      delete '/profile', to: 'users#destroy'
-      get '/organisedEvents', to: 'users#organised_events' 
-      get '/attendedEvents', to: 'users#attended_events' 
       get '/upcomingEvents', to: 'users#upcoming_events'
-
 
       resources :gamepieces, only: %i[show create destroy index], path: 'mygames'
       get '/games/search', to: 'games#search'
-      post '/games/save', to: 'games#save' # probably not needed at all
 
-      resources :events, only: %i[show index create update] do
+      resources :events, only: %i[show index create] do
         # attendance
-        get '/attendees', to: 'attendees#index'
         post '/rsvp', to: 'attendees#create'
         delete '/rsvp', to: 'attendees#destroy'
         
         # games
-        get '/games', to: 'eventgames#index'
         post '/addgame', to: 'eventgames#create'
         delete '/removegame', to: 'eventgames#destroy'
 
@@ -38,10 +30,6 @@ Rails.application.routes.draw do
       end
       # cancel
       get '/events/:id/cancel', to: 'events#cancel'
-      
-      get '/categories', to: 'categories#index'
-      get '/mechanics', to: 'mechanics#index'
-      get '/comments/:id', to: 'comments#show'
       
       get '/users/:user_id/gameitems', to: 'users#gameitems'
       get '/gameitems/:id', to: 'gamepieces#show2'

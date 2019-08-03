@@ -3,14 +3,6 @@
 class Api::V1::EventgamesController < ApplicationController
   before_action :find_event
 
-  def index
-    if @event
-      render json: @event.gamepieces, root: "game_pieces", adapter: :json
-    else
-      render json: { error: 'Cannot find event' }, status: 404
-    end
-  end
-
   def create
     attendance = @event.attendances.find_by(attendee_id: current_user.id)
     gamepiece = current_user.gamepieces.find_by(id: params[:gamepiece_id])

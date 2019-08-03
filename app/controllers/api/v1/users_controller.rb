@@ -31,13 +31,13 @@ class Api::V1::UsersController < ApplicationController
     end
   end
 
-  def destroy
-    if current_user.destroy
-      render json: { status: 'DELETED' }, status: 200
-    else
-      render json: { error: 'User not found.' }, status: 404
-    end
-  end
+  # def destroy
+  #   if current_user.destroy
+  #     render json: { status: 'DELETED' }, status: 200
+  #   else
+  #     render json: { error: 'User not found.' }, status: 404
+  #   end
+  # end
 
   def signin
     user = User.find_by(username: params[:username])
@@ -61,26 +61,26 @@ class Api::V1::UsersController < ApplicationController
     render json: current_user, root: "user", adapter: :json
   end
 
-  def patch_profile
-    user = current_user
-    if user.update_attributes(patch_profile_params)
-      render json: user, root: "user", adapter: :json
-    else
-      render json: { error: 'User not found.' }, status: 404
-    end
-  end
+  # def patch_profile
+  #   user = current_user
+  #   if user.update_attributes(patch_profile_params)
+  #     render json: user, root: "user", adapter: :json
+  #   else
+  #     render json: { error: 'User not found.' }, status: 404
+  #   end
+  # end
 
-  def organised_events
-    @events = current_user.organised_events
-    render json: @events, root: "events", adapter: :json,
-    each_serializer: EventsSerializer, current_user: current_user
-  end
+  # def organised_events
+  #   @events = current_user.organised_events
+  #   render json: @events, root: "events", adapter: :json,
+  #   each_serializer: EventsSerializer, current_user: current_user
+  # end
 
-  def attended_events
-    @events = current_user.attended_events
-    render json: @events, root: "events", adapter: :json,
-    each_serializer: EventsSerializer, current_user: current_user
-  end
+  # def attended_events
+  #   @events = current_user.attended_events
+  #   render json: @events, root: "events", adapter: :json,
+  #   each_serializer: EventsSerializer, current_user: current_user
+  # end
   
   def upcoming_events
     user = current_user
