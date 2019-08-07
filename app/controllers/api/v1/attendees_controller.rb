@@ -16,18 +16,20 @@ class Api::V1::AttendeesController < ApplicationController
     if @attendance.save
       render json: @attendance, serializer: AttendeeSerializer
     else
-      render json: { error: 'Cannot create this attendance' }, status: 400
+      e = Errors::CannotCreate.new what: 'attendance'
+      render json: ErrorSerializer.new(e), status: e.status
     end
   end
-
+  
   def destroy
     attendance = @event.attendances.find_by(attendee: current_user)
-
+    
     if attendance && attendance.attendee === current_user
       attendance.destroy
       render json: { status: 'DELETED' }, status: 200
     else
-      render json: { error: 'Cannot delete this attendance' }, status: 404
+      e = Errors::CannotDelete.new what: 'attendance'
+      render json: ErrorSerializer.new(e), status: e.status
     end
   end
 
