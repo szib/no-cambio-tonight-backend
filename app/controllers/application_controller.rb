@@ -28,7 +28,8 @@ class ApplicationController < ActionController::API
 
   def require_login
     unless current_user
-      render json: { error: 'Authentication error' }, status: 401
+      e = Errors::Unauthorized.new
+      render json: ErrorSerializer.new(e), status: e.status
     end
   end
 end
