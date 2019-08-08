@@ -9,7 +9,8 @@ class Api::V1::UsersController < ApplicationController
     if user.save
       render json: { token: issue_token(id: user.id) }
     else
-      render json: { error: 'Cannot create user.' }, status: 400
+      e = Errors::CannotCreate.new what: 'user'
+      render json: ErrorSerializer.new(e), status: e.status
     end
   end
 
@@ -18,16 +19,16 @@ class Api::V1::UsersController < ApplicationController
     if users
       render json: users, root: "users", adapter: :json
     else
-      render json: { error: 'User not found.' }, status: 404
+      render_not_found_error
     end
   end
-
+  
   def show
     user = User.find_by(id: params[:id])
     if user
       render json: user, root: "user", adapter: :json
     else
-      render json: { error: 'User not found.' }, status: 404
+      render_not_found_error
     end
   end
 
@@ -44,17 +45,14 @@ class Api::V1::UsersController < ApplicationController
     if user&.authenticate(params[:password])
       render json: { token: issue_token(id: user.id) }
     else
-      render json: { error: 'Invalid username/password combination.' }, status: 401
+      e = Errors::InvalidCredentials.new
+      render json: ErrorSerializer.new(e), status: e.status
     end
   end
 
   def validate
     user = current_user
-    if user
-      render json: { token: issue_token(id: user.id) }
-    else
-      render json: { error: 'Invalid token.' }, status: 401
-    end
+    render json: { token: issue_token(id: user.id) }
   end
 
   def profile
@@ -94,12 +92,17 @@ class Api::V1::UsersController < ApplicationController
       gameitems = user.gamepieces
       render json: gameitems, root: "gameitems", adapter: :json, include: '**'
     else
-      render json: { error: 'User not found.' }, status: 404
+      render_not_found_error
     end
   end
   
 
   private
+
+  def render_not_found_error
+    e = Errors::NotFound.new what: 'User'
+    render json: ErrorSerializer.new(e), status: e.status
+  end
 
   def user_registration_params
     params.permit(:username, :password, :password_confirmation, :first_name, :last_name, :email)

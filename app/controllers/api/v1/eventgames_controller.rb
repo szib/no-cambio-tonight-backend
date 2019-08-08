@@ -10,18 +10,20 @@ class Api::V1::EventgamesController < ApplicationController
       eventgame = Eventgame.find_or_create_by(gamepiece: gamepiece, attendance: attendance)
       render json: eventgame, root: "game_piece", adapter: :json
     else
-        render json: { error: 'Cannot add game to the event' }, status: 400
+        e = Errors::CannotAddGameToEvent.new what: 'event'
+        render json: ErrorSerializer.new(e), status: e.status
+      end
     end
-  end
-
-  def destroy
+    
+    def destroy
     attendance = @event.attendances.find_by(attendee_id: current_user.id)
     eventgame = Eventgame.find_by(attendance: attendance, gamepiece_id: params[:gamepiece_id])
     if eventgame
       eventgame.destroy
       render json: { status: 'DELETED' }, status: 200
     else
-      render json: { error: 'Cannot remove this game from the event' }, status: 404
+      e = Errors::CannotRemoveGameFromEvent.new what: 'event'
+      render json: ErrorSerializer.new(e), status: e.status
     end
   end
 
