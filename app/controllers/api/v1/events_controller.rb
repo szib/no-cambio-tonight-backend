@@ -11,7 +11,8 @@ class Api::V1::EventsController < ApplicationController
     if event.save
       render json: event, root: "event", adapter: :json
     else
-      render json: { error: 'Cannot create event' }, status: 400
+      e = Errors::CannotCreate.new what: 'event'
+      render json: ErrorSerializer.new(e), status: e.status
     end
   end
 
@@ -21,7 +22,8 @@ class Api::V1::EventsController < ApplicationController
       render json: @events, root: "events", adapter: :json,
       each_serializer: EventsSerializer, current_user: current_user, include: '**'
     else
-      render json: { error: 'Cannot find event' }, status: 404
+      e = Errors::NotFound.new what: 'event'
+      render json: ErrorSerializer.new(e), status: e.status
     end
   end
 
@@ -29,7 +31,8 @@ class Api::V1::EventsController < ApplicationController
     if @event
       render json: @event, root: "event", adapter: :json, include: '**'
     else
-      render json: { error: 'Cannot find event' }, status: 404
+      e = Errors::NotFound.new what: 'event'
+      render json: ErrorSerializer.new(e), status: e.status
     end
   end
 
@@ -42,15 +45,23 @@ class Api::V1::EventsController < ApplicationController
   # end
 
   def cancel
-    if @event && @event.organiser === @user
-      @event['is_cancelled'] = true
-      if @event.save
-        render json: @event, root: "event", adapter: :json, include: '**'
+    if @event
+      if @event.organiser === @user
+        @event['is_cancelled'] = true
+        if @event.save
+          render json: @event, root: "event", adapter: :json, include: '**'
+        else
+          e = Errors::CannotCreate.new what: 'event'
+          render json: ErrorSerializer.new(e), status: e.status
+        end
+
       else
-        render json: { error: 'Cannot save event' }, status: 500
+        e = Errors::InsufficientPermission.new
+        render json: ErrorSerializer.new(e), status: e.status
       end
     else
-      render json: { error: 'Cannot find event or you are not the organizer' }, status: 400
+      e = Errors::NotFound.new what: 'event'
+      render json: ErrorSerializer.new(e), status: e.status
     end
   end
 

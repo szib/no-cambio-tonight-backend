@@ -7,11 +7,7 @@ class Api::V1::GamepiecesController < ApplicationController
   before_action :find_user
 
   def index
-    if @user
-      render json: @user.gamepieces, root: "game_pieces", adapter: :json, include: '**'
-    else
-      render json: { error: 'Invalid user id' }, status: 404
-    end
+    render json: @user.gamepieces, root: "game_pieces", adapter: :json, include: '**'
   end
 
   def show
@@ -19,16 +15,18 @@ class Api::V1::GamepiecesController < ApplicationController
     if gp && gp.owner === current_user
       render json: gp, status: 200, include: '**'
     else
-      render json: { error: 'Cannot get this game' }, status: 404
+      e = Errors::InsufficientPermission.new
+      render json: ErrorSerializer.new(e), status: e.status
     end
   end
-
+  
   def show2
     gp = Gamepiece.find_by(id: params[:id])
     if gp
       render json: gp, status: 200,root: "gameitem", adapter: :json, include: '**'
     else
-      render json: { error: 'Cannot get this game' }, status: 404
+      e = Errors::NotFound.new what: 'Gamepiece'
+      render json: ErrorSerializer.new(e), status: e.status
     end
   end
 
@@ -52,7 +50,8 @@ class Api::V1::GamepiecesController < ApplicationController
       gp.destroy
       render json: { status: 'DELETED' }, status: 200
     else
-      render json: { error: 'Cannot delete this game' }, status: 404
+      e = Errors::CannotDelete.new what: 'gamepiece'
+      render json: ErrorSerializer.new(e), status: e.status
     end
   end
 
