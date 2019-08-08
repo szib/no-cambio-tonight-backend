@@ -10,7 +10,8 @@ class Api::V1::CommentsController < ApplicationController
     if @event
       render json: @event.comments, root: 'comments', adapter: :json
     else
-      render json: { error: 'Cannot find event' }, status: 400
+      e = Errors::NotFound.new what: 'event'
+      render json: ErrorSerializer.new(e), status: e.status
     end
   end
   
@@ -20,19 +21,21 @@ class Api::V1::CommentsController < ApplicationController
     if comment.save
       render json: @event.comments, root: 'comments', adapter: :json
     else
-      render json: { error: 'Cannot create comment' }, status: 400
+      e = Errors::CannotCreate.new what: 'comment'
+      render json: ErrorSerializer.new(e), status: e.status
     end
   end
-
+  
   def gameitems_index
     gameitem = Gamepiece.find_by(id: params[:gameitem_id])
     if gameitem
       render json: gameitem.comments, root: 'comments', adapter: :json
     else
-      render json: { error: 'Cannot find event' }, status: 400
+      e = Errors::NotFound.new what: 'event'
+      render json: ErrorSerializer.new(e), status: e.status
     end
   end
-
+  
   def gameitems_create
     comment = Comment.new(comment_params)
     gameitem = Gamepiece.find_by(id: params[:gameitem_id])
@@ -40,7 +43,8 @@ class Api::V1::CommentsController < ApplicationController
     if comment.save
       render json: gameitem.comments, root: 'comments', adapter: :json
     else
-      render json: { error: 'Cannot create comment' }, status: 400
+      e = Errors::CannotCreate.new what: 'comment'
+      render json: ErrorSerializer.new(e), status: e.status
     end
   end
 
