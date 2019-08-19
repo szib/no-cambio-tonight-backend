@@ -1,5 +1,5 @@
 module Errors
-  class StandardError < ::StandardError
+  class StandardError < StandardError
     def initialize(title: nil, detail: nil, status: nil)
       @title = title || "Something went wrong"
       @detail = detail || "We encountered unexpected error, but our developers had been already notified about it"

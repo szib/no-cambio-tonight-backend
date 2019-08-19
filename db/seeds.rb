@@ -22,7 +22,7 @@ mechanics_json['mechanics'].each do |mechanic|
   Mechanic.create(mechanic)
 end
 
-unless Rails.env.production?
+# unless Rails.env.production?
   # Seed with games ["3xbCLNpbny", "fDn9rQjH9O", "GP7Y2xOUzj", "74f9mzbw9Y"]
   # connection = ActiveRecord::Base.connection
   # sql = File.read('db/games.sql')
@@ -159,4 +159,4 @@ unless Rails.env.production?
   end
   puts '==> Eventgames done'
 
-end
+# end
