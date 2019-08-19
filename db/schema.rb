@@ -12,9 +12,12 @@
 
 ActiveRecord::Schema.define(version: 2019_07_08_080613) do
 
+  # These are extensions that must be enabled in order to support this database
+  enable_extension "plpgsql"
+
   create_table "attendances", force: :cascade do |t|
-    t.integer "attendee_id"
-    t.integer "event_id"
+    t.bigint "attendee_id"
+    t.bigint "event_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.index ["attendee_id"], name: "index_attendances_on_attendee_id"
@@ -29,16 +32,16 @@ ActiveRecord::Schema.define(version: 2019_07_08_080613) do
   end
 
   create_table "categories_games", id: false, force: :cascade do |t|
-    t.integer "game_id", null: false
-    t.integer "category_id", null: false
+    t.bigint "game_id", null: false
+    t.bigint "category_id", null: false
     t.index ["category_id"], name: "index_categories_games_on_category_id"
     t.index ["game_id"], name: "index_categories_games_on_game_id"
   end
 
   create_table "comments", force: :cascade do |t|
-    t.integer "author_id"
+    t.bigint "author_id"
     t.string "commentable_type", default: "Comment"
-    t.integer "commentable_id"
+    t.bigint "commentable_id"
     t.string "comment_text"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
@@ -47,8 +50,8 @@ ActiveRecord::Schema.define(version: 2019_07_08_080613) do
   end
 
   create_table "eventgames", force: :cascade do |t|
-    t.integer "attendance_id"
-    t.integer "gamepiece_id"
+    t.bigint "attendance_id"
+    t.bigint "gamepiece_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.index ["attendance_id"], name: "index_eventgames_on_attendance_id"
@@ -56,7 +59,7 @@ ActiveRecord::Schema.define(version: 2019_07_08_080613) do
   end
 
   create_table "events", force: :cascade do |t|
-    t.integer "organiser_id"
+    t.bigint "organiser_id"
     t.string "title"
     t.string "location"
     t.boolean "is_cancelled", default: false
@@ -69,8 +72,8 @@ ActiveRecord::Schema.define(version: 2019_07_08_080613) do
   end
 
   create_table "gamepieces", force: :cascade do |t|
-    t.integer "owner_id"
-    t.integer "game_id"
+    t.bigint "owner_id"
+    t.bigint "game_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.index ["game_id"], name: "index_gamepieces_on_game_id"
@@ -100,8 +103,8 @@ ActiveRecord::Schema.define(version: 2019_07_08_080613) do
   end
 
   create_table "games_mechanics", id: false, force: :cascade do |t|
-    t.integer "game_id", null: false
-    t.integer "mechanic_id", null: false
+    t.bigint "game_id", null: false
+    t.bigint "mechanic_id", null: false
     t.index ["game_id"], name: "index_games_mechanics_on_game_id"
     t.index ["mechanic_id"], name: "index_games_mechanics_on_mechanic_id"
   end
@@ -124,4 +127,12 @@ ActiveRecord::Schema.define(version: 2019_07_08_080613) do
     t.date "member_since"
   end
 
+  add_foreign_key "attendances", "events"
+  add_foreign_key "attendances", "users", column: "attendee_id"
+  add_foreign_key "comments", "users", column: "author_id"
+  add_foreign_key "eventgames", "attendances"
+  add_foreign_key "eventgames", "gamepieces"
+  add_foreign_key "events", "users", column: "organiser_id"
+  add_foreign_key "gamepieces", "games"
+  add_foreign_key "gamepieces", "users", column: "owner_id"
 end
