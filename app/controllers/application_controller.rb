@@ -4,7 +4,9 @@ class ApplicationController < ActionController::API
   before_action :require_login
 
   def secret
-    ENV['AUTH_SECRET']
+    Rails.application.credentials.fetch(:auth).fetch(:secret) { 
+      raise "it seems you didn't configure secret key" 
+    }
   end
 
   def issue_token(data)

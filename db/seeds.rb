@@ -46,7 +46,7 @@ end
         first_name = Faker::Name.male_first_name
       end
       last_name = Faker::Name.last_name
-      email = Faker::Internet.email("#{first_name} #{last_name}", '.')
+      email = Faker::Internet.email(name: "#{first_name} #{last_name}", separators: '.')
       
       user =   {
         username: "user#{user_idx}",
@@ -55,7 +55,7 @@ end
         first_name: first_name,
         last_name: last_name,
         email: email,
-        member_since: Faker::Date.backward(90),
+        member_since: Faker::Date.backward(days: 90),
       }
       users << user
     end
@@ -71,7 +71,7 @@ end
       events = []
     number.times do |idx|
       event_idx = idx + 1
-      start_date_time = Faker::Time.between(1.weeks.ago, 3.weeks.from_now)
+      start_date_time = Faker::Time.between(from: 1.weeks.ago, to: 3.weeks.from_now)
       end_date_time = start_date_time + [120,180,240,300,360].sample.minutes 
       
       event = {
@@ -88,7 +88,7 @@ end
   end
 
   def create_comment(author, commentable)
-    creation_time = Faker::Time.backward(10)
+    creation_time = Faker::Time.backward(days: 10)
     comment_text = [
       Faker::Movies::HitchhikersGuideToTheGalaxy.quote,
       Faker::Movies::BackToTheFuture.quote,

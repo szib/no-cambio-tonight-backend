@@ -2,7 +2,9 @@ module BoardGameAtlas
   module API
     class << self
       def setup
-        client_id = ENV['BGA_CLIENT_ID']
+        client_id = Rails.application.credentials.fetch(:bga).fetch(:client_id) { 
+          raise "it seems you didn't configure BGA client id" 
+        }
         @base_url = "https://www.boardgameatlas.com/api/search?client_id=#{client_id}"
       end
 
